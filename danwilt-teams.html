@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Audit & Training for Dev Teams — danwilt.ai</title>
+<meta name="description" content="I audit how your engineering team uses AI, find the gaps, and train them to close it. Audit to training in under a week.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #ffffff;
+    --surface: #f7f7f8;
+    --surface-2: #efefef;
+    --border: #dcdce0;
+    --border-light: #e8e8ec;
+    --text: #333333;
+    --text-dim: #737380;
+    --text-light: #999;
+    --accent: #3B5998;
+    --accent-soft: rgba(59,89,152,0.07);
+    --accent-border: rgba(59,89,152,0.18);
+    --accent-hover: #334d85;
+    --green: #00B894;
+    --green-soft: rgba(0,184,148,0.07);
+    --red: #E17055;
+    --red-soft: rgba(225,112,85,0.05);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── Navigation ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-brand {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-brand .accent { color: var(--accent); }
+  .nav-brand .dim { opacity: 0.3; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover { color: var(--text); }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--accent-hover); }
+  .nav-cta svg { width: 13px; height: 13px; }
+
+  /* ── Shared ── */
+  section { padding: 6rem 2rem; position: relative; }
+
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title .setup { font-weight: 300; }
+
+  .section-subtitle {
+    color: var(--text-dim);
+    font-size: 1rem;
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .section-alt {
+    background: var(--surface);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 2rem 6rem;
+    overflow: hidden;
+    background:
+      radial-gradient(circle, rgba(59,89,152,0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: -80px;
+    right: -100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,89,152,0.1) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    bottom: -60px;
+    left: -80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,89,152,0.06) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--accent-border);
+  }
+
+  .hero-badge svg { width: 13px; height: 13px; }
+
+  .hero-headline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-headline .setup { font-weight: 300; }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    max-width: 600px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .btn-primary svg { width: 16px; height: 16px; }
+
+  .hero-proof {
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+
+  /* ── Speed strip ── */
+  .speed-strip {
+    background: var(--text);
+    padding: 1.1rem 2rem;
+    text-align: center;
+  }
+
+  .speed-strip p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #fff;
+  }
+
+  .speed-strip span { opacity: 0.45; }
+  .speed-strip .sep { margin: 0 0.75rem; opacity: 0.2; }
+
+  /* ── Problem — Overheard Quotes ── */
+  .gap-quotes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 600px) { .gap-quotes { grid-template-columns: 1fr; } }
+
+  .gap-quote {
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 1.5rem 1.5rem 1.25rem;
+    position: relative;
+  }
+
+  .gap-quote::before {
+    content: '\201C';
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--red);
+    opacity: 0.15;
+    line-height: 1;
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+  }
+
+  .gap-quote p {
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .gap-quote-attr {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    font-style: normal;
+  }
+
+  .gap-kicker {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 640px;
+  }
+
+  .gap-kicker strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  /* ── Process / Phases ── */
+  .phases {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 800px) { .phases { grid-template-columns: 1fr; } }
+
+  .phase {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-number {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--text);
+    opacity: 0.04;
+    position: absolute;
+    top: 0.75rem;
+    right: 1.25rem;
+    line-height: 1;
+  }
+
+  .phase-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .phase-label::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .phase h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+    line-height: 1.1;
+  }
+
+  /* ── Step items ── */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 56px;
+    margin-bottom: 2rem;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    background: var(--border-light);
+    border-radius: 2px;
+  }
+
+  .step {
+    padding: 0.75rem 0;
+    position: relative;
+  }
+
+  .step:last-child::after {
+    content: '';
+    position: absolute;
+    left: -56px;
+    top: calc(0.75rem + 34px);
+    bottom: 0;
+    width: 36px;
+    background: var(--bg);
+    z-index: 0;
+  }
+
+  .section-alt .step:last-child::after {
+    background: var(--bg);
+  }
+
+  .step h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .step p {
+    font-size: 0.84rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  /* step-detail replaced by step-cal icons */
+
+  /* ── Phase deliverables (inline) ── */
+  .phase-deliverables {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .phase-deliverables-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .phase-deliverable-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .phase-deliverable-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .phase-deliverable-item svg {
+    width: 16px;
+    height: 16px;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .phase-deliverable-item span {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .phase-deliverable-item strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── Phase pricing — subtle inline ── */
+  .phase-pricing-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .phase-price {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .phase-meta {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    border-left: 1px solid var(--border);
+    padding-left: 0.75rem;
+    line-height: 1.4;
+  }
+
+  /* ── Step calendar icons ── */
+  .step-cal {
+    position: absolute;
+    left: -56px;
+    top: calc(0.75rem);
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  .step-cal-header {
+    width: 100%;
+    height: 11px;
+    background: var(--accent);
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-cal-header span {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.32rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .step-cal-body {
+    flex: 1; width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    border: 1.5px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+  }
+
+  /* ── What you get ── */
+  .deliverables {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 800px) { .deliverables { grid-template-columns: 1fr; } }
+
+  .deliverable {
+    padding: 1.75rem;
+    border-radius: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-light);
+  }
+
+  .deliverable-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .deliverable-icon svg { width: 20px; height: 20px; }
+
+  .deliverable h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  .deliverable p {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  /* ── Stats ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 3rem 0 0;
+  }
+
+  @media (max-width: 600px) { .stats { grid-template-columns: 1fr; } }
+
+  .stat { text-align: center; padding: 1.5rem; }
+
+  .stat-number {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* ── Credibility — Timeline/Resume ── */
+  .cred-timeline {
+    position: relative;
+    padding-left: 140px;
+  }
+
+  .cred-timeline::before {
+    content: '';
+    position: absolute;
+    left: 128px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: var(--border-light);
+  }
+
+  .cred-group-label {
+    position: relative;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    margin-top: 2.25rem;
+  }
+
+  .cred-group-label:first-child { margin-top: 0; }
+
+  .cred-group-label::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transform: translateY(-50%);
+  }
+
+  .cred-item {
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  .cred-item-logo {
+    position: absolute;
+    left: -140px;
+    width: 120px;
+    text-align: right;
+    padding-right: 20px;
+    top: 0.55rem;
+  }
+
+  .cred-item-logo img {
+    height: 15px;
+    width: auto;
+    filter: brightness(0);
+    opacity: 0.3;
+  }
+
+  .cred-item h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+  }
+
+  .cred-item p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* Inline mini stats under startup items */
+  .cred-mini-stats {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    margin-top: 0.5rem;
+  }
+
+  .cred-mini-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    padding-right: 0.85rem;
+    margin-right: 0.85rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .cred-mini-stat:last-child {
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  .cred-mini-stat-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .cred-mini-stat-label {
+    font-size: 0.68rem;
+    color: var(--text-light);
+    font-weight: 500;
+  }
+
+  @media (max-width: 600px) {
+    .cred-timeline { padding-left: 0; }
+    .cred-timeline::before { display: none; }
+    .cred-item-logo { display: none; }
+    .cred-group-label::before { display: none; }
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: #1a1a1a;
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before,
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cta-section::before {
+    width: 400px; height: 400px;
+    top: -120px; left: -120px;
+    border: 2px solid rgba(255,255,255,0.03);
+  }
+
+  .cta-section::after {
+    width: 300px; height: 300px;
+    bottom: -80px; right: -60px;
+    border: 2px solid rgba(255,255,255,0.025);
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 1rem;
+  }
+
+  .cta-section h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .cta-section h2 .setup { font-weight: 300; }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.5);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .btn-white:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-white svg { width: 16px; height: 16px; }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border-light);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .footer-content .sep { color: var(--border); font-weight: 300; margin: 0 0.25rem; }
+
+  .footer-content a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-content a:hover { color: var(--accent); }
+
+  /* ── Animations ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 600px) {
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .phase { padding: 2rem 1.75rem; }
+    .stats { gap: 0; }
+    .stat { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">dan<span class="accent">wilt</span><span class="dim">.ai</span></a>
+    <div class="nav-links">
+      <a href="#process" class="nav-link">Process</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#book" class="nav-cta">Book a Call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content fade-up">
+    <div class="hero-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m7 8 3 3-3 3"/><line x1="13" y1="14" x2="17" y2="14"/></svg> For Engineering Teams</div>
+    <h1 class="hero-headline"><span class="setup">Your engineers have AI tools.</span> They're not getting 10x value from them yet.</h1>
+    <p class="hero-sub">Most teams have Copilot or Claude installed. But engineers are still babysitting every output and rewriting half of it. The problem isn't the model — <strong>it's how your team is using it.</strong> I find the gap and close it.</p>
+    <div class="hero-actions">
+      <a href="#book" class="btn-primary">Book a 30-Minute Call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <span class="hero-proof">Audit to training in under a week</span>
+    </div>
+  </div>
+</section>
+
+<!-- Speed strip -->
+<div class="speed-strip">
+  <p><span>Audit: 2&ndash;3 days</span><span class="sep">|</span><span>Training: ~1 week</span><span class="sep">|</span>Your team is shipping differently by Friday</p>
+</div>
+
+<!-- The Problem -->
+<section>
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">The Gap</div>
+      <h2 class="section-title"><span class="setup">There's a massive gap between "uses AI tools"</span> and "AI is a force multiplier."</h2>
+      <p class="section-subtitle">If any of these sound familiar, your team is on the wrong side of that gap.</p>
+    </div>
+
+    <div class="gap-quotes fade-up">
+      <div class="gap-quote">
+        <p>I spent an hour getting Copilot to generate that module and then another hour fixing everything it got wrong.</p>
+        <div class="gap-quote-attr">— Every engineer, at some point</div>
+      </div>
+      <div class="gap-quote">
+        <p>Half my day is reviewing AI-generated PRs from juniors that look right at first glance but break in weird ways.</p>
+        <div class="gap-quote-attr">— Senior engineer, buried in reviews</div>
+      </div>
+      <div class="gap-quote">
+        <p>It's great for throwaway scripts. But on our actual codebase? It doesn't know our patterns. The output is useless.</p>
+        <div class="gap-quote-attr">— Lead developer, legacy codebase</div>
+      </div>
+      <div class="gap-quote">
+        <p>We bought Copilot for everyone six months ago. Usage dropped after the first two weeks. Nobody talks about it anymore.</p>
+        <div class="gap-quote-attr">— VP of Engineering, wondering about ROI</div>
+      </div>
+    </div>
+
+    <p class="gap-kicker fade-up">You've seen the LinkedIn posts — teams claiming 10x output, companies shipping with half the headcount. And your team's experience looks nothing like that. So you start to wonder if it's all hype. <strong>It's not.</strong> The gap between your results and theirs is specific, diagnosable, and fixable.</p>
+
+  </div>
+</section>
+
+<!-- The Process -->
+<section class="section-alt" id="process">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">The Process</div>
+      <h2 class="section-title"><span class="setup">Two phases. One week.</span> Permanently better output.</h2>
+      <p class="section-subtitle">I come in, diagnose exactly where your team stands, and train them to close the gap. No multi-month timelines. No bloated SOWs.</p>
+    </div>
+
+    <div class="phases fade-up">
+      <!-- Phase 1: Audit -->
+      <div class="phase">
+        <div class="phase-number">01</div>
+        <div class="phase-label">Phase 1</div>
+        <h3>The Audit</h3>
+        <div class="phase-pricing-inline">
+          <span class="phase-price">$10,000</span>
+          <span class="phase-meta">4 days &middot; Remote or on-site</span>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-cal"><div class="step-cal-header"><span>Day</span></div><div class="step-cal-body">1</div></div>
+            <h4>Codebase & Tooling Review</h4>
+            <p>I dig into your repos, CI/CD pipeline, and existing AI setup. I'm looking at how your codebase is structured for AI to succeed — or fail — and what tools your team has access to versus what they're actually using.</p>
+          </div>
+          <div class="step">
+            <div class="step-cal"><div class="step-cal-header"><span>Day</span></div><div class="step-cal-body">2–3</div></div>
+            <h4>Engineer Shadowing</h4>
+            <p>I watch how your engineers actually work with AI in the codebase. Not interviews — real observation. I see where they're getting stuck, where they're fighting the tool, and where the process breaks down.</p>
+          </div>
+          <div class="step">
+            <div class="step-cal"><div class="step-cal-header"><span>Day</span></div><div class="step-cal-body">4</div></div>
+            <h4>Findings & Recommendations</h4>
+            <p>A clear, prioritized report: here's where your team stands, here's the gap, here's exactly what it would take to close it. No jargon, no fluff — a document you can hand to your CTO or VP of Engineering.</p>
+          </div>
+        </div>
+        <div class="phase-deliverables">
+          <div class="phase-deliverables-label">Deliverables</div>
+          <div class="phase-deliverable-list">
+            <div class="phase-deliverable-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+              <span><strong>Audit Report</strong> &mdash; A prioritized findings document with specific, actionable recommendations tailored to your team, your stack, and your gaps.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2: Training -->
+      <div class="phase">
+        <div class="phase-number">02</div>
+        <div class="phase-label">Phase 2</div>
+        <h3>The Training</h3>
+        <div class="phase-pricing-inline">
+          <span class="phase-price">$30k&ndash;$150k</span>
+          <span class="phase-meta">~1 week &middot; Scales with team size</span>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-cal"><div class="step-cal-header"><span>Half</span></div><div class="step-cal-body">½d</div></div>
+            <h4>Team Workshop</h4>
+            <p>A live session covering the principles behind why AI falls short for most teams and the mental model shift required to make it a reliable tool. I tailor this to your stack, your codebase, and the specific gaps I found in the audit.</p>
+          </div>
+          <div class="step">
+            <div class="step-cal"><div class="step-cal-header"><span>Day</span></div><div class="step-cal-body">1–2</div></div>
+            <h4>Codebase Configuration</h4>
+            <p>I work with your team to implement the specific configurations, documentation, and patterns your codebase needs for AI to produce high-quality output consistently. This is the system — not just knowledge transfer.</p>
+          </div>
+          <div class="step">
+            <div class="step-cal"><div class="step-cal-header"><span>Day</span></div><div class="step-cal-body">2–3</div></div>
+            <h4>Hands-On Pairing</h4>
+            <p>I pair with your engineers on real tasks from your backlog. We work through actual tickets together so they experience the difference firsthand. This is where the "aha moment" happens — when they see their own code coming back right the first time.</p>
+          </div>
+          <div class="step">
+            <div class="step-cal"><div class="step-cal-header"><span>End</span></div><div class="step-cal-body">+30d</div></div>
+            <h4>Handoff & Follow-Up</h4>
+            <p>Documentation of everything we set up, a playbook for maintaining and evolving it, and a 30-day check-in to answer questions and troubleshoot anything that's come up since.</p>
+          </div>
+        </div>
+        <div class="phase-deliverables">
+          <div class="phase-deliverables-label">Deliverables</div>
+          <div class="phase-deliverable-list">
+            <div class="phase-deliverable-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <span><strong>Configured Codebase</strong> &mdash; Your repos set up with the context, patterns, and documentation that AI tools need to produce consistently good output.</span>
+            </div>
+            <div class="phase-deliverable-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+              <span><strong>Team Playbook</strong> &mdash; How to maintain what we set up, onboard new engineers into the system, and evolve it as tools change.</span>
+            </div>
+            <div class="phase-deliverable-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              <span><strong>Workshop Recording</strong> &mdash; Full recording so new hires can get up to speed and existing team members can revisit key concepts.</span>
+            </div>
+            <div class="phase-deliverable-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span><strong>Ongoing Support</strong> &mdash; I stay in touch for the first few months after training, answering questions and making sure your team stays on track.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats fade-up">
+      <div class="stat">
+        <div class="stat-number">&lt; 1 Week</div>
+        <div class="stat-label">Audit to training complete</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">Day 1</div>
+        <div class="stat-label">Engineers start working differently</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">10x</div>
+        <div class="stat-label">The output gap between trained and untrained teams</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- About / Credibility -->
+<section class="section-alt" id="about">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Why Me</div>
+      <h2 class="section-title"><span class="setup">I've been building software for 20+ years.</span><br>I know what actually works in production.</h2>
+      <p class="section-subtitle">I'm not someone who read about AI last year and started consulting. I've shipped production code at the companies your engineers want to work at.</p>
+    </div>
+
+    <div class="cred-timeline fade-up">
+      <div class="cred-group-label">Enterprise</div>
+
+      <div class="cred-item">
+        <div class="cred-item-logo"><img src="logos/aws.svg" alt="Amazon"></div>
+        <h4>Amazon — App Store</h4>
+        <p>Built the frontend for the Amazon App Store</p>
+      </div>
+      <div class="cred-item">
+        <div class="cred-item-logo"><img src="logos/walmart.svg" alt="Walmart"></div>
+        <h4>Walmart — Sam's Club</h4>
+        <p>Established TDD patterns for the Sam's Club mobile team</p>
+      </div>
+      <div class="cred-item">
+        <div class="cred-item-logo"><img src="logos/expedia.svg" alt="Expedia"></div>
+        <h4>Expedia — Product Page</h4>
+        <p>Improved performance of their product page</p>
+      </div>
+
+      <div class="cred-group-label">Startups</div>
+
+      <div class="cred-item">
+        <div class="cred-item-logo"><img src="logos/air.svg" alt="Air"></div>
+        <h4>Air — Seed to Scale</h4>
+        <p>Joined at seed stage with 10 people, helped scale engineering to 35+ employees and $5M ARR over six years</p>
+        <div class="cred-mini-stats">
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">35+</span><span class="cred-mini-stat-label">employees</span></div>
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">6</span><span class="cred-mini-stat-label">years</span></div>
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">$5M</span><span class="cred-mini-stat-label">ARR</span></div>
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-item-logo"><img src="logos/loancad.svg" alt="LoanCAD"></div>
+        <h4>LoanCAD — Co-founder &amp; CTO</h4>
+        <p>Built the AI context system so effective I automated myself out of the CTO role. $1M+ profitable in under 2 years.</p>
+        <div class="cred-mini-stats">
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">5</span><span class="cred-mini-stat-label">employees</span></div>
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">2</span><span class="cred-mini-stat-label">years</span></div>
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">$1M+</span><span class="cred-mini-stat-label">profitable</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="book">
+  <div class="cta-content fade-up">
+    <div class="cta-label">Start with the audit</div>
+    <h2><span class="setup">Book a 30-minute call.</span><br>I'll show you the gap live.</h2>
+    <p>I'll walk through what 10x AI output looks like on a real codebase. Then we'll scope the audit for your team. No pitch deck — just a screen share and an honest conversation.</p>
+    <a href="mailto:dwilt4rville@gmail.com" class="btn-white">Get in Touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <span>Dan Wilt</span>
+    <span class="sep">|</span>
+    <span>danwilt.ai</span>
+    <span class="sep">|</span>
+    <a href="mailto:dwilt4rville@gmail.com">dwilt4rville@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>danwilt.ai — AI Coaching for Dev Teams & Everyone</title>
+<meta name="description" content="20+ years building software. Now I help teams and individuals unlock the full potential of AI. Audit, training, and personal coaching.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #ffffff;
+    --surface: #f7f7f8;
+    --surface-2: #efefef;
+    --border: #dcdce0;
+    --border-light: #e8e8ec;
+    --text: #333333;
+    --text-dim: #737380;
+    --text-light: #999;
+    --accent: #3B5998;
+    --accent-soft: rgba(59,89,152,0.07);
+    --accent-border: rgba(59,89,152,0.18);
+    --accent-hover: #334d85;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── Navigation ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-brand {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-brand .accent { color: var(--accent); }
+  .nav-brand .dim { opacity: 0.3; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover { color: var(--text); }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--accent-hover); }
+  .nav-cta svg { width: 13px; height: 13px; }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 2rem 6rem;
+    overflow: hidden;
+    background:
+      radial-gradient(circle, rgba(59,89,152,0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: -80px;
+    right: -100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,89,152,0.1) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    bottom: -60px;
+    left: -80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,89,152,0.06) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+  }
+
+  .hero-headline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-headline .setup {
+    font-weight: 300;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .hero-sub strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary svg { width: 16px; height: 16px; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--text);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary svg { width: 16px; height: 16px; }
+
+  /* ── Sections ── */
+  section {
+    padding: 6rem 2rem;
+    position: relative;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title .setup {
+    font-weight: 300;
+  }
+
+  .section-subtitle {
+    color: var(--text-dim);
+    font-size: 1rem;
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .section-alt {
+    background: var(--surface);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  /* ── Two tracks ── */
+  .tracks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: 800px) {
+    .tracks { grid-template-columns: 1fr; }
+  }
+
+  .track {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .track:hover {
+    border-color: var(--accent-border);
+    box-shadow: 0 4px 20px rgba(59,89,152,0.06);
+  }
+
+  .track-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    color: var(--accent);
+  }
+
+  .track-icon svg { width: 22px; height: 22px; }
+
+  .track-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .track h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+  }
+
+  .track p {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .track-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .track-link:hover { gap: 0.6rem; }
+  .track-link svg { width: 14px; height: 14px; }
+
+  /* ── Logo strip ── */
+  .logo-strip {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .logo-strip-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    white-space: nowrap;
+  }
+
+  .logo-strip-logos {
+    display: flex;
+    align-items: center;
+    gap: 2.25rem;
+    flex-wrap: wrap;
+  }
+
+  .logo-strip-logos img {
+    height: 22px;
+    width: auto;
+    filter: brightness(0);
+    opacity: 0.3;
+    transition: opacity 0.2s;
+  }
+
+  .logo-strip-logos img:hover { opacity: 0.55; }
+
+  .logo-strip.hero-logos {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  /* ── Credibility — Timeline/Resume ── */
+  .cred-timeline {
+    position: relative;
+    padding-left: 140px;
+  }
+
+  .cred-timeline::before {
+    content: '';
+    position: absolute;
+    left: 128px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: var(--border-light);
+  }
+
+  .cred-group-label {
+    position: relative;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    margin-top: 2.25rem;
+  }
+
+  .cred-group-label:first-child { margin-top: 0; }
+
+  .cred-group-label::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transform: translateY(-50%);
+  }
+
+  .cred-item {
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  .cred-item-logo {
+    position: absolute;
+    left: -140px;
+    width: 120px;
+    text-align: right;
+    padding-right: 20px;
+    top: 0.55rem;
+  }
+
+  .cred-item-logo img {
+    height: 15px;
+    width: auto;
+    filter: brightness(0);
+    opacity: 0.3;
+  }
+
+  .cred-item h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+  }
+
+  .cred-item p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .cred-mini-stats {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    margin-top: 0.5rem;
+  }
+
+  .cred-mini-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    padding-right: 0.85rem;
+    margin-right: 0.85rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .cred-mini-stat:last-child {
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  .cred-mini-stat-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .cred-mini-stat-label {
+    font-size: 0.68rem;
+    color: var(--text-light);
+    font-weight: 500;
+  }
+
+  @media (max-width: 600px) {
+    .cred-timeline { padding-left: 0; }
+    .cred-timeline::before { display: none; }
+    .cred-item-logo { display: none; }
+    .cred-group-label::before { display: none; }
+  }
+
+  /* ── Stats row ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 3rem 0 0;
+  }
+
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: 1fr; }
+  }
+
+  .stat {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .stat-number {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* ── CTA Section ── */
+  .cta-section {
+    background: #1a1a1a;
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before,
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cta-section::before {
+    width: 400px;
+    height: 400px;
+    top: -120px;
+    left: -120px;
+    border: 2px solid rgba(255,255,255,0.03);
+  }
+
+  .cta-section::after {
+    width: 300px;
+    height: 300px;
+    bottom: -80px;
+    right: -60px;
+    border: 2px solid rgba(255,255,255,0.025);
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .cta-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 1rem;
+  }
+
+  .cta-section h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .cta-section h2 .setup {
+    font-weight: 300;
+  }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.5);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .btn-white:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .btn-white svg { width: 16px; height: 16px; }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border-light);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .footer-content .sep {
+    color: var(--border);
+    font-weight: 300;
+    margin: 0 0.25rem;
+  }
+
+  .footer-content a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-content a:hover { color: var(--accent); }
+
+  /* ── Animations ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 600px) {
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .stats { gap: 0; }
+    .stat { padding: 1rem; }
+    .track { padding: 2rem 1.75rem; }
+    .logo-strip { gap: 1.5rem; }
+    .logo-strip-logos { gap: 1.5rem; }
+    .logo-strip-logos img { height: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">dan<span class="accent">wilt</span><span class="dim">.ai</span></a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#contact" class="nav-cta">Get in Touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content fade-up">
+    <h1 class="hero-headline"><span class="setup">I help teams and individuals unlock the full potential of AI.</span> The capabilities are already here. I teach you how to actually use them.</h1>
+    <p class="hero-sub">I've spent 20+ years building software at places like <strong>Amazon, Walmart, and Expedia</strong>. Now I help engineering teams and individuals get real, measurable results from AI — not just prompts and prayers.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Let's Talk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="#services" class="btn-secondary">See What I Do <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+    </div>
+
+    <div class="logo-strip hero-logos">
+      <div class="logo-strip-logos">
+        <img src="logos/aws.svg" alt="Amazon Web Services">
+        <img src="logos/walmart.svg" alt="Walmart">
+        <img src="logos/expedia.svg" alt="Expedia">
+        <img src="logos/air.svg" alt="Air">
+        <img src="logos/loancad.svg" alt="LoanCAD">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Two Tracks -->
+<section class="section-alt" id="services">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">What I Do</div>
+      <h2 class="section-title"><span class="setup">Two ways I can help.</span> Pick the one that fits.</h2>
+      <p class="section-subtitle">Whether you're leading an engineering team or just getting started with AI on your own, I meet you where you are.</p>
+    </div>
+
+    <div class="tracks fade-up">
+      <div class="track">
+        <div class="track-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="m7 8 3 3-3 3"/><line x1="13" y1="14" x2="17" y2="14"/></svg>
+        </div>
+        <div class="track-label">For Dev Teams</div>
+        <h3>AI Audit & Training</h3>
+        <p>I audit your codebase and workflows, interview your engineers, and deliver a clear diagnosis of where your team stands with AI. Then I train them to close the gap — workshops, hands-on pairing, real results in under a week.</p>
+        <a href="danwilt-teams.html" class="track-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="track">
+        <div class="track-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="track-label">For Everyone</div>
+        <h3>Personal AI Coaching</h3>
+        <p>New to AI? I'll take you from the basics all the way to building your own context-powered workflows. No coding background required — just a willingness to learn how to make AI actually work for your projects.</p>
+        <a href="#" class="track-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <div class="stats fade-up">
+      <div class="stat">
+        <div class="stat-number" data-count="20" data-suffix="+">0+</div>
+        <div class="stat-label">Years building production software</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" data-count="10" data-suffix="x">0x</div>
+        <div class="stat-label">The output gap between trained and untrained teams</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">&lt; 1 Week</div>
+        <div class="stat-label">From audit to training complete</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About / Credibility -->
+<section id="about">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Why Me</div>
+      <h2 class="section-title"><span class="setup">I've been building software for 20+ years.</span><br>I know what actually works in production.</h2>
+      <p class="section-subtitle">I'm not someone who read about AI last year and started consulting. I've shipped production code at the companies your engineers want to work at.</p>
+    </div>
+
+    <div class="cred-timeline fade-up">
+      <div class="cred-group-label">Enterprise</div>
+
+      <div class="cred-item">
+        <div class="cred-item-logo"><img src="logos/aws.svg" alt="Amazon"></div>
+        <h4>Amazon — App Store</h4>
+        <p>Built the frontend for the Amazon App Store</p>
+      </div>
+      <div class="cred-item">
+        <div class="cred-item-logo"><img src="logos/walmart.svg" alt="Walmart"></div>
+        <h4>Walmart — Sam's Club</h4>
+        <p>Established TDD patterns for the Sam's Club mobile team</p>
+      </div>
+      <div class="cred-item">
+        <div class="cred-item-logo"><img src="logos/expedia.svg" alt="Expedia"></div>
+        <h4>Expedia — Product Page</h4>
+        <p>Improved performance of their product page</p>
+      </div>
+
+      <div class="cred-group-label">Startups</div>
+
+      <div class="cred-item">
+        <div class="cred-item-logo"><img src="logos/air.svg" alt="Air"></div>
+        <h4>Air — Seed to Scale</h4>
+        <p>Joined at seed stage with 10 people, helped scale engineering to 35+ employees and $5M ARR over six years</p>
+        <div class="cred-mini-stats">
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">35+</span><span class="cred-mini-stat-label">employees</span></div>
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">6</span><span class="cred-mini-stat-label">years</span></div>
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">$5M</span><span class="cred-mini-stat-label">ARR</span></div>
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-item-logo"><img src="logos/loancad.svg" alt="LoanCAD"></div>
+        <h4>LoanCAD — Co-founder &amp; CTO</h4>
+        <p>Built the AI context system so effective I automated myself out of the CTO role. $1M+ profitable in under 2 years.</p>
+        <div class="cred-mini-stats">
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">5</span><span class="cred-mini-stat-label">employees</span></div>
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">2</span><span class="cred-mini-stat-label">years</span></div>
+          <div class="cred-mini-stat"><span class="cred-mini-stat-num">$1M+</span><span class="cred-mini-stat-label">profitable</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-content fade-up">
+    <div class="cta-label">Let's connect</div>
+    <h2><span class="setup">Ready to get real results from AI?</span><br>Let's talk.</h2>
+    <p>Whether you're a CTO looking to level up your engineering team or someone who's curious about what AI can actually do for you — I'd love to hear what you're working on.</p>
+    <a href="mailto:dwilt4rville@gmail.com" class="btn-white">Get in Touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <span>Dan Wilt</span>
+    <span class="sep">|</span>
+    <a href="mailto:dwilt4rville@gmail.com">dwilt4rville@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Count-up animation for stat numbers
+  function animateCount(el) {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1200;
+    const start = performance.now();
+
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * target);
+      el.textContent = current + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = 'true';
+        animateCount(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-number[data-count]').forEach(el => statObserver.observe(el));
+</script>
+
+</body>
+</html>
