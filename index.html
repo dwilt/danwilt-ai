@@ -710,10 +710,64 @@
   /* ── Commit Graph ── */
   .hero-graph {
     position: relative;
-    background: #1a1e2e;
-    border-radius: 14px;
+    background: rgba(14,18,32,0.7);
+    border: 1px solid rgba(91,127,199,0.1);
+    border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
     padding: 1.75rem 2rem 1.5rem;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.05);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+
+  /* Edge traces on graph panel */
+  .hero-graph::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.3), transparent);
+  }
+
+  .hero-graph::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 25%;
+    right: 25%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.15), transparent);
+  }
+
+  .hero-graph-corner-tl,
+  .hero-graph-corner-br {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    z-index: 2;
+  }
+  .hero-graph-corner-tl {
+    top: 8px;
+    left: 8px;
+    border-top: 1px solid rgba(91,127,199,0.25);
+    border-left: 1px solid rgba(91,127,199,0.25);
+  }
+  .hero-graph-corner-br {
+    bottom: 8px;
+    right: 8px;
+    border-bottom: 1px solid rgba(91,127,199,0.25);
+    border-right: 1px solid rgba(91,127,199,0.25);
+  }
+  .hero-graph-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(ellipse at center, rgba(91,127,199,0.06) 0%, transparent 60%);
+    pointer-events: none;
   }
 
   .hero-graph-header {
@@ -721,16 +775,21 @@
   }
 
   .hero-graph-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #ffffff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #e8eaf0;
+    letter-spacing: 0.5px;
     margin-bottom: 0.15rem;
   }
 
   .hero-graph-subtitle {
-    font-size: 0.72rem;
-    color: rgba(255,255,255,0.4);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: rgba(91,127,199,0.5);
+    text-transform: uppercase;
   }
 
   .hero-graph-chart {
@@ -739,8 +798,10 @@
   }
 
   .hero-graph-source {
-    font-size: 0.62rem;
-    color: rgba(255,255,255,0.3);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.5px;
+    color: rgba(91,127,199,0.3);
     margin-top: 0.75rem;
     text-align: right;
   }
@@ -897,7 +958,7 @@
   }
 
   .gap-quote:hover {
-    border-color: rgba(252,129,129,0.15);
+    border-color: rgba(91,127,199,0.15);
   }
 
   .gap-quote::before {
@@ -907,7 +968,7 @@
     left: 12px;
     right: 12px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(252,129,129,0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.2), transparent);
   }
 
   .gap-quote::after {
@@ -915,7 +976,7 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 2.5rem;
     font-weight: 600;
-    color: var(--red);
+    color: var(--accent);
     opacity: 0.12;
     line-height: 1;
     position: absolute;
@@ -937,7 +998,7 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.6rem;
     letter-spacing: 1px;
-    color: rgba(252,129,129,0.4);
+    color: rgba(91,127,199,0.4);
     font-style: normal;
     text-transform: uppercase;
   }
@@ -1448,6 +1509,86 @@
     width: 16px;
     height: 16px;
     flex-shrink: 0;
+  }
+
+  /* ── Contact Form Modal ── */
+  .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+  .contact-form label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--text);
+    background: rgba(14,18,32,0.6);
+    border: 1px solid rgba(91,127,199,0.12);
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.25s;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    border-color: rgba(91,127,199,0.35);
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: var(--text-light);
+    opacity: 0.6;
+  }
+  .contact-form select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235b7fc7' stroke-width='1.5' stroke-linecap='square'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+  .contact-form select option {
+    background: #111627;
+    color: var(--text);
+  }
+  .contact-form textarea { resize: vertical; min-height: 80px; }
+  .contact-form .btn-tech {
+    margin-top: 0.5rem;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+  }
+  .contact-form .btn-tech:hover { border: none; }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem 0;
+  }
+  .form-success svg {
+    width: 40px;
+    height: 40px;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+  .form-success .msg {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .form-success .sub {
+    font-size: 0.84rem;
+    color: var(--text-dim);
   }
 
   /* ── Step marker — tech style ── */
@@ -1988,16 +2129,7 @@
   }
 
   /* ── Animations ── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* No entrance animation — content visible immediately */
 
   /* ── Mobile ── */
   @media (max-width: 600px) {
@@ -2092,9 +2224,10 @@
   <div class="nav-inner">
     <a href="/" class="nav-brand">dan<span class="accent">wilt</span><span class="dim">.ai</span></a>
     <div class="nav-links">
+      <a href="#gap" class="nav-link">The Gap</a>
       <a href="#process" class="nav-link">Process</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="#book" class="nav-cta">BOOK.CALL <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
+      <a href="javascript:void(0)" onclick="openContactModal()" class="nav-cta">BOOK.CALL <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
     </div>
   </div>
 </div>
@@ -2173,6 +2306,15 @@
     <div class="particle" style="top:95%;left:45%;--dx:-20px;--dy:-30px;--dur:8s;--delay:2.2s;"></div>
     <div class="particle green" style="top:2%;left:55%;--dx:28px;--dy:-46px;--dur:10s;--delay:3.8s;"></div>
   </div>
+    <svg class="section-vectors" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="820,30 1146,30 1160,44 1160,120 834,120 820,106" fill="rgba(91,127,199,0.03)"/>
+      <polygon points="900,140 1150,140 1160,150 1160,210 910,210 900,200" fill="rgba(91,127,199,0.025)"/>
+      <polygon points="780,230 952,230 960,238 960,285 788,285 780,277" fill="rgba(91,127,199,0.02)" transform="rotate(180 870.0 257.5)"/>
+      <polygon points="30,680 318,680 330,692 330,760 42,760 30,748" fill="rgba(91,127,199,0.025)"/>
+      <polygon points="60,780 270,780 280,790 280,840 70,840 60,830" fill="rgba(91,127,199,0.02)" transform="rotate(180 170.0 810.0)"/>
+      <polygon points="-200,-150 350,60 -200,400" fill="rgba(91,127,199,0.018)" transform="rotate(8 50 100)"/>
+      <polygon points="900,600 1500,450 1500,900" fill="rgba(91,127,199,0.015)" transform="rotate(-5 1200 750)"/>
+    </svg>
   <!-- Hero tech panels — Stack C style -->
   <div class="tech-panel-group" style="width:570px;height:900px;top:3%;right:1%;">
     <svg viewBox="0 0 500 900" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2561,17 +2703,20 @@
 
   <div class="hero-split fade-up">
     <div class="hero-content">
-      <h1 class="hero-headline"><span class="setup">I built an AI system so effective, I automated myself out of the CTO role.</span> Now I do the same for engineering teams.</h1>
+      <h1 class="hero-headline"><span class="setup">I replaced myself as CTO with AI.</span> Let me double your team's output.</h1>
       <p class="hero-sub">I audit how your team uses AI, find the gaps, and train them to close it. The result: doubled engineering output in 90 days.</p>
       <div class="hero-actions">
-        <a href="#book" class="btn-tech">INIT.CONSULTATION <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
+        <a href="javascript:void(0)" onclick="openContactModal()" class="btn-tech">INIT.CONSULTATION <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
       </div>
     </div>
 
     <div class="hero-graph">
+      <div class="hero-graph-corner-tl"></div>
+      <div class="hero-graph-corner-br"></div>
+      <div class="hero-graph-glow"></div>
       <div class="hero-graph-header">
-        <div class="hero-graph-title">Commits to production &mdash; Air Labs</div>
-        <div class="hero-graph-subtitle">Number of commits per week, last 12 months</div>
+        <div class="hero-graph-title">Commits to production — Air Labs</div>
+        <div class="hero-graph-subtitle">Commits per week · last 12 months</div>
       </div>
       <svg class="hero-graph-chart" viewBox="0 -40 520 240" style="overflow:visible" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- Y-axis labels -->
@@ -2679,11 +2824,17 @@
 
 <!-- The Problem -->
 <div class="section-divider"></div>
-<section style="position:relative;overflow:hidden;">
+<section id="gap" style="position:relative;overflow:hidden;">
   <div class="section-bg-effects">
     <div class="section-dots"></div>
     <div class="section-glow section-glow-1"></div>
     <div class="section-glow" style="width:350px;height:350px;bottom:-100px;left:20%;background:radial-gradient(circle,rgba(225,112,85,0.06) 0%,transparent 60%);"></div>
+    <svg class="section-vectors" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="650,20 948,20 960,32 960,105 662,105 650,93" fill="rgba(91,127,199,0.03)"/>
+      <polygon points="720,120 950,120 960,130 960,185 730,185 720,175" fill="rgba(91,127,199,0.025)"/>
+      <polygon points="680,200 852,200 860,208 860,250 688,250 680,242" fill="rgba(91,127,199,0.02)" transform="rotate(180 770.0 225.0)"/>
+      <polygon points="-250,500 300,350 -250,900" fill="rgba(91,127,199,0.02)" transform="rotate(6 50 600)"/>
+    </svg>
     <!-- Gap section tech panels — Stack C style -->
     <div class="tech-panel-group" style="width:510px;height:750px;top:25px;right:8px;">
       <svg viewBox="0 0 500 800" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3040,6 +3191,17 @@
     <div class="section-glow section-glow-2"></div>
     <div class="section-glow" style="width:500px;height:500px;top:-150px;left:30%;background:radial-gradient(circle,rgba(91,127,199,0.1) 0%,transparent 55%);"></div>
     <div class="section-glow" style="width:400px;height:400px;bottom:-100px;right:10%;background:radial-gradient(circle,rgba(72,187,120,0.06) 0%,transparent 60%);"></div>
+    <svg class="section-vectors" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;" viewBox="0 0 1100 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="740,25 1046,25 1060,39 1060,115 754,115 740,101" fill="rgba(91,127,199,0.028)"/>
+      <polygon points="800,130 1050,130 1060,140 1060,200 810,200 800,190" fill="rgba(91,127,199,0.022)"/>
+      <polygon points="860,220 1052,220 1060,228 1060,275 868,275 860,267" fill="rgba(91,127,199,0.018)" transform="rotate(180 960.0 247.5)"/>
+      <polygon points="780,720 1048,720 1060,732 1060,795 792,795 780,783" fill="rgba(91,127,199,0.025)"/>
+      <polygon points="840,810 1050,810 1060,820 1060,870 850,870 840,860" fill="rgba(91,127,199,0.02)" transform="rotate(180 950.0 840.0)"/>
+      <polygon points="-180,-100 280,120 -180,450" fill="rgba(91,127,199,0.016)" transform="rotate(5 50 150)"/>
+      <polygon points="850,550 1350,400 1350,900" fill="rgba(91,127,199,0.014)" transform="rotate(-3 1100 700)"/>
+    </svg>
+    <!-- Gradient blur glow — top right -->
+    <div style="position:absolute;top:-80px;right:-60px;width:550px;height:550px;background:radial-gradient(ellipse at center,rgba(91,127,199,0.12) 0%,rgba(91,127,199,0.04) 40%,transparent 65%);filter:blur(40px);pointer-events:none;z-index:0;border-radius:50%;"></div>
     <!-- Process section tech panels — Stack C style -->
     <div class="tech-panel-group" style="width:540px;height:810px;top:50px;left:5px;">
       <svg viewBox="0 0 500 850" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3562,6 +3724,14 @@
     <div class="section-dots"></div>
     <div class="section-glow section-glow-1"></div>
     <div class="section-glow" style="width:450px;height:450px;bottom:-200px;left:-280px;background:radial-gradient(circle,rgba(91,127,199,0.08) 0%,transparent 55%);"></div>
+    <svg class="section-vectors" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="640,15 948,15 960,27 960,95 652,95 640,83" fill="rgba(91,127,199,0.03)"/>
+      <polygon points="700,110 950,110 960,120 960,175 710,175 700,165" fill="rgba(91,127,199,0.022)"/>
+      <polygon points="660,190 852,190 860,198 860,240 668,240 660,232" fill="rgba(91,127,199,0.018)" transform="rotate(180 760.0 215.0)"/>
+      <polygon points="20,620 288,620 300,632 300,690 32,690 20,678" fill="rgba(91,127,199,0.025)"/>
+      <polygon points="50,710 242,710 250,718 250,765 58,765 50,757" fill="rgba(91,127,199,0.018)" transform="rotate(180 150.0 737.5)"/>
+      <polygon points="-200,-120 320,80 -200,380" fill="rgba(91,127,199,0.017)" transform="rotate(10 60 120)"/>
+    </svg>
     <!-- Why Me section tech panels — Stack C style -->
     <div class="tech-panel-group" style="width:525px;height:780px;top:35px;right:6px;">
       <svg viewBox="0 0 500 820" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3943,6 +4113,13 @@
     <div class="section-glow" style="width:800px;height:800px;top:-300px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(91,127,199,0.2) 0%,rgba(91,127,199,0.08) 30%,transparent 55%);opacity:1;filter:blur(60px);animation:pulse-glow 6s ease-in-out infinite;--pulse-min:0.6;--pulse-max:1;"></div>
     <div class="section-glow" style="width:400px;height:400px;bottom:-150px;left:20%;background:radial-gradient(circle,rgba(72,187,120,0.1) 0%,transparent 60%);opacity:1;filter:blur(60px);"></div>
     <div class="section-glow" style="width:400px;height:400px;bottom:-150px;right:10%;background:radial-gradient(circle,rgba(91,127,199,0.08) 0%,transparent 60%);opacity:1;filter:blur(60px);"></div>
+    <svg class="section-vectors" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;" viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="20,15 308,15 320,27 320,95 32,95 20,83" fill="rgba(91,127,199,0.028)"/>
+      <polygon points="40,110 270,110 280,120 280,170 50,170 40,160" fill="rgba(91,127,199,0.022)" transform="rotate(180 160.0 140.0)"/>
+      <polygon points="680,430 948,430 960,442 960,505 692,505 680,493" fill="rgba(91,127,199,0.025)"/>
+      <polygon points="720,520 952,520 960,528 960,575 728,575 720,567" fill="rgba(91,127,199,0.02)" transform="rotate(180 840.0 547.5)"/>
+      <polygon points="800,50 1250,-80 1250,400" fill="rgba(91,127,199,0.018)" transform="rotate(-4 1000 200)"/>
+    </svg>
     <!-- CTA section tech panels — Stack C style -->
     <div class="tech-panel-group" style="width:450px;height:630px;top:15px;right:12px;">
       <svg viewBox="0 0 460 680" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -4200,7 +4377,7 @@
     <div class="cta-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> INIT.ENGAGE</div>
     <h2><span class="setup">Book a 30-minute call.</span><br>I'll show you the gap live.</h2>
     <p>I'll walk through what 10x AI output looks like on a real codebase. Then we'll scope the audit for your team. No pitch deck — just a screen share and an honest conversation.</p>
-    <a href="mailto:dwilt4rville@gmail.com" class="btn-tech">CONN.ESTABLISH <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
+    <a href="javascript:void(0)" onclick="openContactModal()" class="btn-tech">CONN.ESTABLISH <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
   </div>
 </section>
 
@@ -4211,21 +4388,58 @@
     <span class="sep">|</span>
     <span>danwilt.ai</span>
     <span class="sep">|</span>
-    <a href="mailto:dwilt4rville@gmail.com">dwilt4rville@gmail.com</a>
+    <a href="mailto:info@danwilt.ai">info@danwilt.ai</a>
   </div>
 </footer>
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+<!-- No entrance animations -->
 
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
+<!-- Contact Form Modal -->
+<div class="modal-overlay" id="contact-modal" onclick="if(event.target===this)closeContactModal()">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeContactModal()"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14" style="position:relative;top:1px;"><path d="M2 2L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 2L2 12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></button>
+    <div class="modal-header">
+      <div class="modal-tag"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> START.CONVERSATION</div>
+      <div class="modal-title">Let's talk about your team</div>
+      <div class="modal-subtitle">I'll get back to you within 24 hours.</div>
+    </div>
+    <div class="modal-body">
+      <form class="contact-form" id="contact-form" onsubmit="return handleContactSubmit(event)">
+        <!-- Formspree honeypot — hidden from humans, catches bots -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <label>Name
+          <input type="text" name="name" placeholder="Your name" required>
+        </label>
+        <label>Email
+          <input type="email" name="_replyto" placeholder="you@company.com" required>
+        </label>
+        <label>Team size
+          <select name="team_size" required>
+            <option value="" disabled selected>Select team size</option>
+            <option value="2-5">2–5 engineers</option>
+            <option value="6-15">6–15 engineers</option>
+            <option value="16-30">16–30 engineers</option>
+            <option value="30+">30+ engineers</option>
+          </select>
+        </label>
+        <label>What's your biggest AI frustration?
+          <textarea name="message" placeholder="e.g. We've got Copilot licenses but output hasn't changed..."></textarea>
+        </label>
+        <button type="submit" class="btn-tech" id="contact-submit-btn">SEND MESSAGE <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></button>
+      </form>
+      <div class="form-success" id="form-success">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div class="msg">Message sent</div>
+        <div class="sub">I'll be in touch soon.</div>
+      </div>
+      <div class="form-success" id="form-error" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        <div class="msg">Something went wrong</div>
+        <div class="sub">Try emailing <a href="mailto:info@danwilt.ai" style="color:var(--accent);">info@danwilt.ai</a> directly.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Growth Bonus Modal -->
 <div class="modal-overlay" id="growth-modal" onclick="if(event.target===this)closeGrowthModal()">
@@ -4274,6 +4488,49 @@
 </div>
 
 <script>
+// ── Formspree config ──
+var FORMSPREE_ID = 'xkoqdyga';
+
+function openContactModal() {
+  document.getElementById('contact-modal').classList.add('active');
+  document.getElementById('contact-form').reset();
+  document.getElementById('contact-form').style.display = '';
+  document.getElementById('form-success').style.display = 'none';
+  document.getElementById('form-error').style.display = 'none';
+  var btn = document.getElementById('contact-submit-btn');
+  btn.disabled = false;
+  btn.innerHTML = 'SEND MESSAGE <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg>';
+}
+function closeContactModal() {
+  document.getElementById('contact-modal').classList.remove('active');
+}
+function handleContactSubmit(e) {
+  e.preventDefault();
+  var form = e.target;
+  var btn = document.getElementById('contact-submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = 'SENDING...';
+
+  var data = new FormData(form);
+
+  fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(function(res) {
+    if (res.ok) {
+      form.style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      form.style.display = 'none';
+      document.getElementById('form-error').style.display = 'block';
+    }
+  }).catch(function() {
+    form.style.display = 'none';
+    document.getElementById('form-error').style.display = 'block';
+  });
+  return false;
+}
 function openGrowthModal() {
   document.getElementById('growth-modal').classList.add('active');
 }
