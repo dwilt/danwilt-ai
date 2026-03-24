@@ -2018,9 +2018,86 @@
     .nav-links { display: none; }
     section { padding: 4rem 1.5rem; }
     .phase { padding: 2rem 1.75rem; }
-    .stats { gap: 0; }
-    .stat { padding: 1.5rem 1.25rem; }
+    /* stats spacing handled in 960px block */
   }
+
+  /* ══════ MOBILE REFINEMENTS (<960px) ══════ */
+  @media (max-width: 960px) {
+    /* 1. Reduce tech panel opacity to ~60% of desktop value */
+    .tech-panel-group {
+      opacity: 0.4 !important;
+    }
+
+    /* 2. Speed strip: convert to vertical tag list */
+    .speed-strip p {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .speed-strip .sep {
+      display: none;
+    }
+    .speed-strip span {
+      display: block;
+      position: relative;
+      font-size: 0.65rem;
+      letter-spacing: 1.8px;
+    }
+    /* Add subtle separator dots between stacked items */
+    .speed-strip span:not(:last-child)::after {
+      content: '';
+      display: block;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(91,127,199,0.3);
+      margin: 0.5rem auto 0;
+    }
+    .speed-strip {
+      padding: 1.5rem 1.5rem;
+    }
+
+    /* 3. Stats: more breathing room when stacked */
+    .stats {
+      gap: 1.5rem !important;
+    }
+    .stat {
+      padding: 2rem 1.75rem !important;
+    }
+
+    /* 4. Cred-timeline: hide line, reset margin, stack logo above text */
+    .cred-timeline {
+      margin-left: 0 !important;
+      padding-left: 0 !important;
+    }
+    .cred-timeline::before {
+      display: none !important;
+    }
+    .cred-group-label {
+      padding-left: 0 !important;
+    }
+    .cred-group-label::before {
+      display: none !important;
+    }
+    .cred-item {
+      grid-template-columns: 1fr !important;
+      gap: 0 !important;
+    }
+    .cred-item-logo {
+      justify-content: flex-start !important;
+      margin-bottom: 0.35rem;
+    }
+    .cred-item-logo img {
+      height: 16px !important;
+    }
+    .cred-item h4,
+    .cred-item p,
+    .cred-mini-stats {
+      grid-column: 1 !important;
+    }
+  }
+
 </style>
 </head>
 <body>
