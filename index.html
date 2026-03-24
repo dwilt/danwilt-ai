@@ -486,6 +486,7 @@
     box-shadow: 0 0 6px rgba(91,127,199,0.3);
     animation: particle-drift var(--dur, 8s) ease-in-out infinite;
     animation-delay: var(--delay, 0s);
+    will-change: transform;
   }
 
   .particle.green {
@@ -2215,6 +2216,18 @@
     .cred-mini-stats {
       grid-column: 1 !important;
     }
+
+    /* ── Mobile perf: remove heavy SVG elements ── */
+    .tech-panel-group { display: none !important; }
+    .section-vectors { display: none !important; }
+
+    /* ── Reduce blur/backdrop filters on mobile (expensive on GPU) ── */
+    .section-glow { filter: none !important; opacity: 0.7 !important; }
+    .gap-quote, .stat, .phase { backdrop-filter: none !important; }
+
+    /* ── GPU compositing hints for smoother scroll/zoom ── */
+    section { contain: layout style paint; }
+    .section-bg-effects { contain: strict; }
   }
 
 </style>
