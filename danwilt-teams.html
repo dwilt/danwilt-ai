@@ -157,10 +157,8 @@
     transition: all 0.25s ease;
   }
 
-  .nav-cta .chevron {
+  .nav-cta .chev-svg {
     color: #5b7fc7;
-    font-weight: 600;
-    font-size: 0.85rem;
     transition: transform 0.25s, color 0.25s;
   }
 
@@ -170,7 +168,7 @@
     border-color: rgba(91,127,199,0.35);
   }
 
-  .nav-cta:hover .chevron {
+  .nav-cta:hover .chev-svg {
     transform: translateX(3px);
     color: #8aadee;
   }
@@ -183,7 +181,7 @@
   .section-label {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.5rem;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.72rem;
     font-weight: 500;
@@ -194,11 +192,9 @@
   }
 
   /* chevron is now an inline span */
-  .chev {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--accent);
-    line-height: 1;
+  .chev-svg {
+    flex-shrink: 0;
+    vertical-align: middle;
   }
 
   .section-title {
@@ -817,10 +813,8 @@
     transition: all 0.25s ease;
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
   }
-  .btn-tech .chevron {
+  .btn-tech .chev-svg {
     color: #5b7fc7;
-    font-weight: 600;
-    font-size: 1rem;
     transition: transform 0.25s, color 0.25s;
   }
   .btn-tech:hover {
@@ -828,7 +822,7 @@
     color: #fff;
     border-color: rgba(91,127,199,0.35);
   }
-  .btn-tech:hover .chevron {
+  .btn-tech:hover .chev-svg {
     transform: translateX(3px);
     color: #8aadee;
   }
@@ -1110,7 +1104,15 @@
     border-top: 1px solid rgba(91,127,199,0.08);
   }
 
+  .phase-deliverables-label .chev-svg {
+    position: relative;
+    top: -1px;
+  }
+
   .phase-deliverables-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.62rem;
     font-weight: 500;
@@ -1209,26 +1211,25 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: rgba(59,89,152,0.08);
+    width: 20px;
+    height: 20px;
+    background: rgba(22,28,50,0.6);
     color: var(--accent);
-    font-size: 11px;
-    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
-    border: 1px solid rgba(59,89,152,0.2);
-    font-family: 'Inter', sans-serif;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(91,127,199,0.2);
     text-decoration: none;
     flex-shrink: 0;
-    line-height: 18px;
-    padding: 1px 0 0 0;
-    text-align: center;
+    line-height: 1;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
   }
   .bonus-info-icon:hover {
-    background: var(--accent);
-    color: white;
+    background: rgba(91,127,199,0.2);
+    color: #c0cce8;
+    border-color: rgba(91,127,199,0.4);
   }
 
   /* ── Modal ── */
@@ -1284,7 +1285,6 @@
     align-items: center;
     justify-content: center;
     color: var(--text-dim);
-    font-size: 1.1rem;
     z-index: 1;
     transition: all 0.2s;
   }
@@ -1303,6 +1303,9 @@
   }
 
   .modal-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.62rem;
     font-weight: 500;
@@ -1310,6 +1313,11 @@
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 0.6rem;
+  }
+
+  .modal-tag .chev-svg {
+    position: relative;
+    top: -1px;
   }
 
   .modal-subtitle {
@@ -1652,6 +1660,9 @@
   }
 
   .stat-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.55rem;
     font-weight: 500;
@@ -1730,18 +1741,8 @@
   .cred-timeline {
     position: relative;
     padding-left: 0;
-    margin-left: 115px;
+    margin-left: 100px;
     max-width: 700px;
-  }
-
-  .cred-timeline::before {
-    content: '';
-    position: absolute;
-    left: 130px;
-    top: 10px;
-    bottom: 10px;
-    width: 1px;
-    background: linear-gradient(180deg, rgba(91,127,199,0.2), rgba(91,127,199,0.05));
   }
 
   .cred-group-label {
@@ -1868,6 +1869,9 @@
   }
 
   .cta-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.72rem;
     font-weight: 500;
@@ -2090,7 +2094,7 @@
     <div class="nav-links">
       <a href="#process" class="nav-link">Process</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="#book" class="nav-cta">BOOK.CALL <span class="chevron">&raquo;</span></a>
+      <a href="#book" class="nav-cta">BOOK.CALL <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
     </div>
   </div>
 </div>
@@ -2560,7 +2564,7 @@
       <h1 class="hero-headline"><span class="setup">I built an AI system so effective, I automated myself out of the CTO role.</span> Now I do the same for engineering teams.</h1>
       <p class="hero-sub">I audit how your team uses AI, find the gaps, and train them to close it. The result: doubled engineering output in 90 days.</p>
       <div class="hero-actions">
-        <a href="#book" class="btn-tech">INIT.CONSULTATION <span class="chevron">&raquo;</span></a>
+        <a href="#book" class="btn-tech">INIT.CONSULTATION <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
       </div>
     </div>
 
@@ -2999,7 +3003,7 @@
   </div>
   <div class="container" style="position:relative;z-index:1;">
     <div class="fade-up">
-      <div class="section-label"><span aria-hidden="true" class="chev">«</span> GAP.ANALYSIS</div>
+      <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> GAP.ANALYSIS</div>
       <h2 class="section-title"><span class="setup">There's a massive gap between "uses AI tools"</span> and "AI is a force multiplier."</h2>
       <p class="section-subtitle">If any of these sound familiar, your team is on the wrong side of that gap.</p>
     </div>
@@ -3355,7 +3359,7 @@
   </div>
   <div class="container" style="position:relative;z-index:1;">
     <div class="fade-up">
-      <div class="section-label"><span aria-hidden="true" class="chev">«</span> PROC.PIPELINE</div>
+      <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> PROC.PIPELINE</div>
       <h2 class="section-title"><span class="setup">Two phases. Two weeks.</span> Permanently better output.</h2>
       <p class="section-subtitle">I come in, diagnose exactly where your team stands, and train them to close the gap. No multi-month timelines. No bloated SOWs. And my compensation is tied to your results.</p>
     </div>
@@ -3364,7 +3368,7 @@
       <!-- Phase 1: Audit -->
       <div class="phase">
         <div class="phase-number">01</div>
-        <div class="phase-label"><span aria-hidden="true" class="chev">«</span> PHASE.01</div>
+        <div class="phase-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> PHASE.01</div>
         <h3>The Audit</h3>
         <div class="phase-pricing-block">
           <div class="phase-pricing-top">
@@ -3390,7 +3394,7 @@
           </div>
         </div>
         <div class="phase-deliverables">
-          <div class="phase-deliverables-label">« OUTPUT.FILES</div>
+          <div class="phase-deliverables-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> OUTPUT.FILES</div>
           <div class="phase-deliverable-list">
             <div class="phase-deliverable-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
@@ -3403,7 +3407,7 @@
       <!-- Phase 2: Training -->
       <div class="phase">
         <div class="phase-number">02</div>
-        <div class="phase-label"><span aria-hidden="true" class="chev">«</span> PHASE.02</div>
+        <div class="phase-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> PHASE.02</div>
         <h3>The Training</h3>
         <div class="phase-pricing-block">
           <div class="phase-pricing-top">
@@ -3436,7 +3440,7 @@
           </div>
         </div>
         <div class="phase-deliverables">
-          <div class="phase-deliverables-label">« OUTPUT.FILES</div>
+          <div class="phase-deliverables-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> OUTPUT.FILES</div>
           <div class="phase-deliverable-list">
             <div class="phase-deliverable-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -3485,7 +3489,7 @@
         <div class="stat-glow"></div>
         <div class="stat-corner-tl"></div>
         <div class="stat-corner-br"></div>
-        <div class="stat-tag">« TIME.DELTA</div>
+        <div class="stat-tag"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> TIME.DELTA</div>
         <div class="stat-number">&lt; 3 Weeks</div>
         <div class="stat-label">Audit to training complete</div>
       </div>
@@ -3513,7 +3517,7 @@
         <div class="stat-glow"></div>
         <div class="stat-corner-tl"></div>
         <div class="stat-corner-br"></div>
-        <div class="stat-tag">« OUTPUT.GAIN</div>
+        <div class="stat-tag"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> OUTPUT.GAIN</div>
         <div class="stat-number">2x</div>
         <div class="stat-label">Target: double your team's output in 90 days</div>
       </div>
@@ -3542,7 +3546,7 @@
         <div class="stat-glow"></div>
         <div class="stat-corner-tl"></div>
         <div class="stat-corner-br"></div>
-        <div class="stat-tag">« ROI.INDEX</div>
+        <div class="stat-tag"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> ROI.INDEX</div>
         <div class="stat-number">14:1</div>
         <div class="stat-label">Typical ROI vs. hiring equivalent headcount</div>
       </div>
@@ -3873,7 +3877,7 @@
   </div>
   <div class="container" style="position:relative;z-index:1;">
     <div class="fade-up">
-      <div class="section-label"><span aria-hidden="true" class="chev">«</span> CRED.VERIFIED</div>
+      <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> CRED.VERIFIED</div>
     </div>
 
     <div class="about-intro fade-up">
@@ -3887,7 +3891,7 @@
     </div>
 
     <div class="cred-timeline fade-up">
-      <div class="cred-group-label"><span aria-hidden="true" class="chev">«</span> Enterprise</div>
+      <div class="cred-group-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> Enterprise</div>
 
       <div class="cred-item">
         <div class="cred-item-logo"><img src="logos/aws.svg" alt="Amazon"></div>
@@ -3905,7 +3909,7 @@
         <p>Improved performance of their product page</p>
       </div>
 
-      <div class="cred-group-label"><span aria-hidden="true" class="chev">«</span> Startups</div>
+      <div class="cred-group-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> Startups</div>
 
       <div class="cred-item">
         <div class="cred-item-logo"><img src="logos/air.svg" alt="Air"></div>
@@ -4193,10 +4197,10 @@
 
   </div>
   <div class="cta-content fade-up" style="position:relative;z-index:1;">
-    <div class="cta-label">« INIT.ENGAGE</div>
+    <div class="cta-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> INIT.ENGAGE</div>
     <h2><span class="setup">Book a 30-minute call.</span><br>I'll show you the gap live.</h2>
     <p>I'll walk through what 10x AI output looks like on a real codebase. Then we'll scope the audit for your team. No pitch deck — just a screen share and an honest conversation.</p>
-    <a href="mailto:dwilt4rville@gmail.com" class="btn-tech">CONN.ESTABLISH <span class="chevron">&raquo;</span></a>
+    <a href="mailto:dwilt4rville@gmail.com" class="btn-tech">CONN.ESTABLISH <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
   </div>
 </section>
 
@@ -4226,9 +4230,9 @@
 <!-- Growth Bonus Modal -->
 <div class="modal-overlay" id="growth-modal" onclick="if(event.target===this)closeGrowthModal()">
   <div class="modal-content">
-    <button class="modal-close" onclick="closeGrowthModal()">&times;</button>
+    <button class="modal-close" onclick="closeGrowthModal()"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14" style="position:relative;top:1px;"><path d="M2 2L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 2L2 12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></button>
     <div class="modal-header">
-      <div class="modal-tag">« BONUS.PROTOCOL</div>
+      <div class="modal-tag"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> BONUS.PROTOCOL</div>
       <div class="modal-title">The Growth Bonus: 5% for 2x</div>
       <div class="modal-subtitle">I tie my compensation to your results.</div>
     </div>
