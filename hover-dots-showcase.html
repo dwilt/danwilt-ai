@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hover Dot Variations — Stack C Buttons</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0e1a;
+    color: #e8eaf0;
+    font-family: 'Inter', sans-serif;
+    padding: 60px 40px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #5b7fc7;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    color: #6b7194;
+    font-size: 0.9rem;
+    margin-bottom: 60px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .variation {
+    margin-bottom: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid rgba(91,127,199,0.08);
+  }
+  .variation:last-child { border-bottom: none; }
+
+  .var-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: #5b7fc7;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .var-desc {
+    color: #6b7194;
+    font-size: 0.82rem;
+    margin-bottom: 24px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .btn-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  /* ══════════════════════════════════════════════════ */
+  /* BASE BUTTON — shared across all variations        */
+  /* ══════════════════════════════════════════════════ */
+  .btn-tech {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #c0cce8;
+    text-decoration: none;
+    padding: 14px 28px;
+    background: rgba(22,28,50,0.6);
+    border: 1px solid rgba(91,127,199,0.15);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.25s ease;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  }
+  .btn-tech .chevron {
+    color: #5b7fc7;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.25s, color 0.25s;
+  }
+  .btn-tech:hover {
+    background: rgba(22,28,50,0.9);
+    color: #fff;
+    border-color: rgba(91,127,199,0.35);
+  }
+  .btn-tech:hover .chevron {
+    transform: translateX(3px);
+    color: #8aadee;
+  }
+
+  /* Dot container — positioned under the left side of text */
+  .btn-dots {
+    position: absolute;
+    bottom: 4px;
+    left: 14px;
+    display: flex;
+    gap: 6px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .btn-tech:hover .btn-dots { opacity: 1; }
+
+  /* ══════════════════════════════════════════════════ */
+  /* VARIATION A — Staggered rapid blink               */
+  /* Three dots, each blinking fast with offset delays  */
+  /* ══════════════════════════════════════════════════ */
+  .var-a .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #5b7fc7;
+    animation: none;
+    opacity: 0;
+  }
+  .var-a .btn-tech:hover .dot {
+    animation: blink-a 0.6s ease-in-out infinite;
+  }
+  .var-a .btn-tech:hover .dot:nth-child(1) { animation-delay: 0s; }
+  .var-a .btn-tech:hover .dot:nth-child(2) { animation-delay: 0.15s; }
+  .var-a .btn-tech:hover .dot:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes blink-a {
+    0%, 100% { opacity: 0; }
+    40% { opacity: 1; }
+    60% { opacity: 0.8; }
+  }
+
+  /* ══════════════════════════════════════════════════ */
+  /* VARIATION B — Sequential sweep                    */
+  /* Dots light up left to right like a scanner bar    */
+  /* ══════════════════════════════════════════════════ */
+  .var-b .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #5b7fc7;
+    opacity: 0;
+  }
+  .var-b .btn-tech:hover .dot {
+    animation: sweep-b 0.9s ease-in-out infinite;
+  }
+  .var-b .btn-tech:hover .dot:nth-child(1) { animation-delay: 0s; }
+  .var-b .btn-tech:hover .dot:nth-child(2) { animation-delay: 0.12s; }
+  .var-b .btn-tech:hover .dot:nth-child(3) { animation-delay: 0.24s; }
+  .var-b .btn-tech:hover .dot:nth-child(4) { animation-delay: 0.36s; }
+
+  @keyframes sweep-b {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    30% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 6px rgba(91,127,199,0.6); }
+    60% { opacity: 0.3; transform: scale(0.8); }
+  }
+
+  /* ══════════════════════════════════════════════════ */
+  /* VARIATION C — Rapid strobe with glow              */
+  /* Dots strobe fast, almost flickering, with bloom   */
+  /* ══════════════════════════════════════════════════ */
+  .var-c .dot {
+    width: 2.5px;
+    height: 2.5px;
+    border-radius: 50%;
+    background: #8aadee;
+    opacity: 0;
+    box-shadow: 0 0 4px rgba(138,173,238,0.4);
+  }
+  .var-c .btn-tech:hover .dot {
+    animation: strobe-c 0.35s ease-in-out infinite;
+  }
+  .var-c .btn-tech:hover .dot:nth-child(1) { animation-delay: 0s; }
+  .var-c .btn-tech:hover .dot:nth-child(2) { animation-delay: 0.08s; }
+  .var-c .btn-tech:hover .dot:nth-child(3) { animation-delay: 0.16s; }
+
+  @keyframes strobe-c {
+    0%, 100% { opacity: 0; }
+    20% { opacity: 1; box-shadow: 0 0 8px rgba(138,173,238,0.8); }
+    50% { opacity: 0; }
+    70% { opacity: 0.6; box-shadow: 0 0 4px rgba(138,173,238,0.4); }
+  }
+
+  /* ══════════════════════════════════════════════════ */
+  /* VARIATION D — Breathing pulse with size shift     */
+  /* Dots gently pulse in and out, growing slightly    */
+  /* ══════════════════════════════════════════════════ */
+  .var-d .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #5b7fc7;
+    opacity: 0;
+  }
+  .var-d .btn-tech:hover .dot {
+    animation: pulse-d 1.2s ease-in-out infinite;
+  }
+  .var-d .btn-tech:hover .dot:nth-child(1) { animation-delay: 0s; }
+  .var-d .btn-tech:hover .dot:nth-child(2) { animation-delay: 0.3s; }
+  .var-d .btn-tech:hover .dot:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes pulse-d {
+    0%, 100% { opacity: 0; transform: scale(0.6); }
+    50% { opacity: 1; transform: scale(1.4); box-shadow: 0 0 8px rgba(91,127,199,0.5); }
+  }
+
+  /* ══════════════════════════════════════════════════ */
+  /* VARIATION E — Random flicker (via multiple anims) */
+  /* Chaotic, irregular timing — feels electrical      */
+  /* ══════════════════════════════════════════════════ */
+  .var-e .dot {
+    width: 2.5px;
+    height: 2.5px;
+    border-radius: 50%;
+    background: #8aadee;
+    opacity: 0;
+  }
+  .var-e .btn-tech:hover .dot:nth-child(1) {
+    animation: flick-e1 0.4s ease-in-out infinite;
+  }
+  .var-e .btn-tech:hover .dot:nth-child(2) {
+    animation: flick-e2 0.55s ease-in-out infinite;
+  }
+  .var-e .btn-tech:hover .dot:nth-child(3) {
+    animation: flick-e3 0.3s ease-in-out infinite;
+  }
+  .var-e .btn-tech:hover .dot:nth-child(4) {
+    animation: flick-e4 0.7s ease-in-out infinite;
+  }
+
+  @keyframes flick-e1 {
+    0%, 100% { opacity: 0; }
+    15% { opacity: 1; box-shadow: 0 0 6px rgba(138,173,238,0.7); }
+    30% { opacity: 0; }
+    70% { opacity: 0.5; }
+    85% { opacity: 0; }
+  }
+  @keyframes flick-e2 {
+    0%, 100% { opacity: 0; }
+    25% { opacity: 0.4; }
+    40% { opacity: 1; box-shadow: 0 0 6px rgba(138,173,238,0.7); }
+    55% { opacity: 0; }
+  }
+  @keyframes flick-e3 {
+    0%, 100% { opacity: 0; }
+    10% { opacity: 1; box-shadow: 0 0 8px rgba(138,173,238,0.9); }
+    25% { opacity: 0; }
+    60% { opacity: 0.8; box-shadow: 0 0 4px rgba(138,173,238,0.5); }
+    75% { opacity: 0; }
+  }
+  @keyframes flick-e4 {
+    0%, 100% { opacity: 0; }
+    20% { opacity: 0.6; }
+    35% { opacity: 0; }
+    50% { opacity: 1; box-shadow: 0 0 6px rgba(138,173,238,0.6); }
+    65% { opacity: 0; }
+    80% { opacity: 0.3; }
+  }
+
+  /* ══════════════════════════════════════════════════ */
+  /* VARIATION F — Mixed color flicker (blue + green)  */
+  /* Two colors alternating like status indicators     */
+  /* ══════════════════════════════════════════════════ */
+  .var-f .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    opacity: 0;
+  }
+  .var-f .dot.blue {
+    background: #5b7fc7;
+  }
+  .var-f .dot.green {
+    background: #48BB78;
+  }
+  .var-f .btn-tech:hover .dot.blue {
+    animation: flick-fb 0.5s ease-in-out infinite;
+  }
+  .var-f .btn-tech:hover .dot.green {
+    animation: flick-fg 0.6s ease-in-out infinite;
+  }
+  .var-f .btn-tech:hover .dot:nth-child(1) { animation-delay: 0s; }
+  .var-f .btn-tech:hover .dot:nth-child(2) { animation-delay: 0.12s; }
+  .var-f .btn-tech:hover .dot:nth-child(3) { animation-delay: 0.06s; }
+  .var-f .btn-tech:hover .dot:nth-child(4) { animation-delay: 0.2s; }
+
+  @keyframes flick-fb {
+    0%, 100% { opacity: 0; }
+    25% { opacity: 1; box-shadow: 0 0 6px rgba(91,127,199,0.7); }
+    50% { opacity: 0; }
+    75% { opacity: 0.5; }
+  }
+  @keyframes flick-fg {
+    0%, 100% { opacity: 0; }
+    20% { opacity: 0.6; box-shadow: 0 0 6px rgba(72,187,120,0.6); }
+    40% { opacity: 1; box-shadow: 0 0 8px rgba(72,187,120,0.8); }
+    60% { opacity: 0; }
+  }
+
+</style>
+</head>
+<body>
+
+<h1>HOVER.FX :: DOT VARIATIONS</h1>
+<p class="subtitle">Hover over each button to see the effect. Small dots positioned under the bottom-left of the text label, quickly flashing in and out. Each variation has a different timing personality.</p>
+
+<!-- ═══ A ═══ -->
+<div class="variation var-a">
+  <div class="var-label">A :: STAGGERED BLINK</div>
+  <div class="var-desc">Three dots blink in rapid succession with staggered delays. Clean and rhythmic — like a status indicator cycling through states. 0.6s loop.</div>
+  <div class="btn-row">
+    <a href="#" class="btn-tech">
+      INIT.CONSULTATION
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+    </a>
+    <a href="#" class="btn-tech">
+      BOOK.CALL
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- ═══ B ═══ -->
+<div class="variation var-b">
+  <div class="var-label">B :: SEQUENTIAL SWEEP</div>
+  <div class="var-desc">Four dots light up in sequence left-to-right with a size pulse — like a scanner bar or data transmission indicator. Each dot briefly blooms with a glow. 0.9s loop.</div>
+  <div class="btn-row">
+    <a href="#" class="btn-tech">
+      INIT.CONSULTATION
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+    </a>
+    <a href="#" class="btn-tech">
+      BOOK.CALL
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- ═══ C ═══ -->
+<div class="variation var-c">
+  <div class="var-label">C :: RAPID STROBE</div>
+  <div class="var-desc">Fastest option. Three dots strobe with a bright glow bloom, double-flashing within each cycle. Aggressive, electric energy. 0.35s loop — nearly flickering.</div>
+  <div class="btn-row">
+    <a href="#" class="btn-tech">
+      INIT.CONSULTATION
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+    </a>
+    <a href="#" class="btn-tech">
+      BOOK.CALL
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- ═══ D ═══ -->
+<div class="variation var-d">
+  <div class="var-label">D :: BREATHING PULSE</div>
+  <div class="var-desc">Slowest, most organic. Dots gently grow and shrink with a soft glow — like machinery idling. Calmer but still clearly active. 1.2s loop.</div>
+  <div class="btn-row">
+    <a href="#" class="btn-tech">
+      INIT.CONSULTATION
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+    </a>
+    <a href="#" class="btn-tech">
+      BOOK.CALL
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- ═══ E ═══ -->
+<div class="variation var-e">
+  <div class="var-label">E :: CHAOTIC FLICKER</div>
+  <div class="var-desc">Each dot runs its own unique animation at a different speed — creates an irregular, electrical flicker pattern. Feels alive and unpredictable. No two moments look the same.</div>
+  <div class="btn-row">
+    <a href="#" class="btn-tech">
+      INIT.CONSULTATION
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+    </a>
+    <a href="#" class="btn-tech">
+      BOOK.CALL
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- ═══ F ═══ -->
+<div class="variation var-f">
+  <div class="var-label">F :: DUAL COLOR FLICKER</div>
+  <div class="var-desc">Blue and green dots alternating — like the particle system in the hero. Each color has its own timing. Feels like two data streams interleaving.</div>
+  <div class="btn-row">
+    <a href="#" class="btn-tech">
+      INIT.CONSULTATION
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot blue"></span>
+        <span class="dot green"></span>
+        <span class="dot blue"></span>
+        <span class="dot green"></span>
+      </span>
+    </a>
+    <a href="#" class="btn-tech">
+      BOOK.CALL
+      <span class="chevron">&raquo;</span>
+      <span class="btn-dots">
+        <span class="dot blue"></span>
+        <span class="dot green"></span>
+        <span class="dot blue"></span>
+        <span class="dot green"></span>
+      </span>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
