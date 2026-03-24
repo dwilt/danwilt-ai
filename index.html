@@ -2231,6 +2231,17 @@
     /* Remove ALL backdrop-filter on mobile */
     .gap-quote, .stat, .phase { backdrop-filter: none !important; }
     nav { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(10,14,26,0.95) !important; }
+    /* Hero background decorative elements (circuit has infinite animations, grid/lines are heavy) */
+    .hero-circuit { display: none !important; }
+    .hero-grid { display: none !important; }
+    .hero-lines { display: none !important; }
+    .hero-hlines { display: none !important; }
+    .hero-lines-extra { display: none !important; }
+    .hero-floor { display: none !important; }
+    /* Stat card decorative SVG backgrounds */
+    .stat-vectors { display: none !important; }
+    /* Pause infinite decorative animations (typing cursor blink, etc. still ok) */
+    .hero-graph-chart { contain: strict; }
 
     /* ── GPU compositing hints for smoother scroll/zoom ── */
     section { contain: layout style paint; }
