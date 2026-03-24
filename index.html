@@ -193,8 +193,8 @@
     margin-bottom: 1.2rem;
   }
 
-  .section-label::before {
-    content: '«';
+  /* chevron is now an inline span */
+  .chev {
     font-size: 1rem;
     font-weight: 600;
     color: var(--accent);
@@ -1034,13 +1034,7 @@
     margin-bottom: 1rem;
   }
 
-  .phase-label::before {
-    content: '«';
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--accent);
-    line-height: 1;
-  }
+  /* chevron is now an inline span */
 
   .phase h3 {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -1765,17 +1759,7 @@
 
   .cred-group-label:first-child { margin-top: 0; }
 
-  .cred-group-label::before {
-    content: '\00AB';
-    position: absolute;
-    left: 126px;
-    top: 50%;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent);
-    line-height: 1;
-    transform: translateY(-50%);
-  }
+  /* chevron is now an inline span */
 
   .cred-item {
     display: grid;
@@ -1863,7 +1847,6 @@
     .cred-item-logo img { height: 14px; }
     .cred-item h4, .cred-item p, .cred-mini-stats { grid-column: 2; }
     .cred-group-label { padding-left: 0; }
-    .cred-group-label::before { display: none; }
   }
 
   /* ── CTA ── */
@@ -2077,9 +2060,7 @@
     .cred-group-label {
       padding-left: 0 !important;
     }
-    .cred-group-label::before {
-      display: none !important;
-    }
+    /* cred chevron is inline span now */
     .cred-item {
       grid-template-columns: 1fr !important;
       gap: 0 !important;
@@ -3018,7 +2999,7 @@
   </div>
   <div class="container" style="position:relative;z-index:1;">
     <div class="fade-up">
-      <div class="section-label">GAP.ANALYSIS</div>
+      <div class="section-label"><span aria-hidden="true" class="chev">«</span> GAP.ANALYSIS</div>
       <h2 class="section-title"><span class="setup">There's a massive gap between "uses AI tools"</span> and "AI is a force multiplier."</h2>
       <p class="section-subtitle">If any of these sound familiar, your team is on the wrong side of that gap.</p>
     </div>
@@ -3374,7 +3355,7 @@
   </div>
   <div class="container" style="position:relative;z-index:1;">
     <div class="fade-up">
-      <div class="section-label">PROC.PIPELINE</div>
+      <div class="section-label"><span aria-hidden="true" class="chev">«</span> PROC.PIPELINE</div>
       <h2 class="section-title"><span class="setup">Two phases. Two weeks.</span> Permanently better output.</h2>
       <p class="section-subtitle">I come in, diagnose exactly where your team stands, and train them to close the gap. No multi-month timelines. No bloated SOWs. And my compensation is tied to your results.</p>
     </div>
@@ -3383,7 +3364,7 @@
       <!-- Phase 1: Audit -->
       <div class="phase">
         <div class="phase-number">01</div>
-        <div class="phase-label">PHASE.01</div>
+        <div class="phase-label"><span aria-hidden="true" class="chev">«</span> PHASE.01</div>
         <h3>The Audit</h3>
         <div class="phase-pricing-block">
           <div class="phase-pricing-top">
@@ -3422,7 +3403,7 @@
       <!-- Phase 2: Training -->
       <div class="phase">
         <div class="phase-number">02</div>
-        <div class="phase-label">PHASE.02</div>
+        <div class="phase-label"><span aria-hidden="true" class="chev">«</span> PHASE.02</div>
         <h3>The Training</h3>
         <div class="phase-pricing-block">
           <div class="phase-pricing-top">
@@ -3892,7 +3873,7 @@
   </div>
   <div class="container" style="position:relative;z-index:1;">
     <div class="fade-up">
-      <div class="section-label">CRED.VERIFIED</div>
+      <div class="section-label"><span aria-hidden="true" class="chev">«</span> CRED.VERIFIED</div>
     </div>
 
     <div class="about-intro fade-up">
@@ -3906,7 +3887,7 @@
     </div>
 
     <div class="cred-timeline fade-up">
-      <div class="cred-group-label">Enterprise</div>
+      <div class="cred-group-label"><span aria-hidden="true" class="chev">«</span> Enterprise</div>
 
       <div class="cred-item">
         <div class="cred-item-logo"><img src="logos/aws.svg" alt="Amazon"></div>
@@ -3924,7 +3905,7 @@
         <p>Improved performance of their product page</p>
       </div>
 
-      <div class="cred-group-label">Startups</div>
+      <div class="cred-group-label"><span aria-hidden="true" class="chev">«</span> Startups</div>
 
       <div class="cred-item">
         <div class="cred-item-logo"><img src="logos/air.svg" alt="Air"></div>
