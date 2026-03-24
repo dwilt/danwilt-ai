@@ -8,6 +8,10 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600;700&display=swap"></noscript>
 <meta property="og:title" content="AI Audit & Training for Dev Teams — danwilt.ai">
 <meta property="og:description" content="I audit how your engineering team uses AI, find the gaps, and train them to close it. Audit to training in under a week.">
 <meta property="og:image" content="https://danwilt.ai/og-image.png">
@@ -18,8 +22,6 @@
 <meta name="twitter:description" content="I audit how your engineering team uses AI, find the gaps, and train them to close it.">
 <meta name="twitter:image" content="https://danwilt.ai/og-image.png">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@400;500;600;700&display=swap');
-
   :root {
     --bg: #0a0e1a;
     --surface: #111627;
@@ -1927,7 +1929,7 @@
     opacity: 0.3;
   }
 
-  .cred-item h4 {
+  .cred-item h3 {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.05rem;
     font-weight: 700;
@@ -1987,7 +1989,7 @@
     .cred-item { grid-template-columns: 32px 1fr; gap: 0 12px; }
     .cred-item-logo { justify-content: flex-start; min-height: auto; }
     .cred-item-logo img { height: 14px; }
-    .cred-item h4, .cred-item p, .cred-mini-stats { grid-column: 2; }
+    .cred-item h3, .cred-item p, .cred-mini-stats { grid-column: 2; }
     .cred-group-label { padding-left: 0; }
   }
 
@@ -2208,7 +2210,7 @@
     .cred-item-logo img {
       height: 16px !important;
     }
-    .cred-item h4,
+    .cred-item h3,
     .cred-item p,
     .cred-mini-stats {
       grid-column: 1 !important;
@@ -2227,11 +2229,12 @@
       <a href="#gap" class="nav-link">The Gap</a>
       <a href="#process" class="nav-link">Process</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="javascript:void(0)" onclick="openContactModal()" class="nav-cta">BOOK.CALL <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
+      <a href="#contact" onclick="openContactModal();return false;" class="nav-cta">BOOK.CALL <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
     </div>
   </div>
 </div>
 
+<main>
 <!-- Hero -->
 <section class="hero">
   <div class="hero-floor"></div>
@@ -2706,7 +2709,7 @@
       <h1 class="hero-headline"><span class="setup">I replaced myself as CTO with AI.</span> Let me double your team's output.</h1>
       <p class="hero-sub">I audit how your team uses AI, find the gaps, and train them to close it. The result: doubled engineering output in 90 days.</p>
       <div class="hero-actions">
-        <a href="javascript:void(0)" onclick="openContactModal()" class="btn-tech">INIT.CONSULTATION <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
+        <a href="#contact" onclick="openContactModal();return false;" class="btn-tech">INIT.CONSULTATION <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
       </div>
     </div>
 
@@ -3575,7 +3578,7 @@
           <div class="phase-pricing-top">
             <span class="phase-price">$30,000</span>
             <span class="phase-bonus-tag">+ 5% Growth Bonus</span>
-            <a class="bonus-info-icon" onclick="openGrowthModal()">?</a>
+            <a href="#bonus" class="bonus-info-icon" onclick="openGrowthModal();return false;">?</a>
           </div>
           <div class="phase-meta-sub">~2 weeks &middot; Remote or on-site</div>
         </div>
@@ -4052,7 +4055,7 @@
 
     <div class="about-intro fade-up">
       <div class="about-photo">
-        <img src="dan-headshot.jpg" alt="Dan Wilt">
+        <picture><source srcset="dan-headshot.webp" type="image/webp"><img src="dan-headshot.jpg" alt="Dan Wilt" width="200" height="200" loading="lazy"></picture>
       </div>
       <div class="about-text">
         <h2 class="section-title" style="text-align:left;margin-bottom:1rem;"><span class="setup">I've been building software for 20+ years.</span> <br>I know what actually works in production.</h2>
@@ -4064,26 +4067,26 @@
       <div class="cred-group-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> Enterprise</div>
 
       <div class="cred-item">
-        <div class="cred-item-logo"><img src="logos/aws.svg" alt="Amazon"></div>
-        <h4>Amazon — App Store</h4>
+        <div class="cred-item-logo"><img src="logos/aws.svg" alt="Amazon" width="40" height="18" loading="lazy"></div>
+        <h3>Amazon — App Store</h3>
         <p>Built the frontend for the Amazon App Store</p>
       </div>
       <div class="cred-item">
-        <div class="cred-item-logo"><img src="logos/walmart.svg" alt="Walmart"></div>
-        <h4>Walmart — Sam's Club</h4>
+        <div class="cred-item-logo"><img src="logos/walmart.svg" alt="Walmart" width="60" height="18" loading="lazy"></div>
+        <h3>Walmart — Sam's Club</h3>
         <p>Established TDD patterns for the Sam's Club mobile team</p>
       </div>
       <div class="cred-item">
-        <div class="cred-item-logo"><img src="logos/expedia.svg" alt="Expedia"></div>
-        <h4>Expedia — Product Page</h4>
+        <div class="cred-item-logo"><img src="logos/expedia.svg" alt="Expedia" width="60" height="18" loading="lazy"></div>
+        <h3>Expedia — Product Page</h3>
         <p>Improved performance of their product page</p>
       </div>
 
       <div class="cred-group-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> Startups</div>
 
       <div class="cred-item">
-        <div class="cred-item-logo"><img src="logos/air.svg" alt="Air"></div>
-        <h4>Air — Seed to Scale</h4>
+        <div class="cred-item-logo"><img src="logos/air.svg" alt="Air" width="30" height="18" loading="lazy"></div>
+        <h3>Air — Seed to Scale</h3>
         <p>Joined at seed stage with 10 people, helped scale engineering to 35+ employees and $5M ARR over six years</p>
         <div class="cred-mini-stats">
           <div class="cred-mini-stat"><span class="cred-mini-stat-num">35+</span><span class="cred-mini-stat-label">employees</span></div>
@@ -4092,8 +4095,8 @@
         </div>
       </div>
       <div class="cred-item">
-        <div class="cred-item-logo"><img src="logos/loancad.svg" alt="LoanCAD"></div>
-        <h4>LoanCAD — Co-founder &amp; CTO</h4>
+        <div class="cred-item-logo"><img src="logos/loancad.svg" alt="LoanCAD" width="60" height="18" loading="lazy"></div>
+        <h3>LoanCAD — Co-founder &amp; CTO</h3>
         <p>Built the AI context system so effective I automated myself out of the CTO role. $1M+ profitable in under 2 years.</p>
         <div class="cred-mini-stats">
           <div class="cred-mini-stat"><span class="cred-mini-stat-num">5</span><span class="cred-mini-stat-label">employees</span></div>
@@ -4377,9 +4380,11 @@
     <div class="cta-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> INIT.ENGAGE</div>
     <h2><span class="setup">Book a 30-minute call.</span><br>I'll show you the gap live.</h2>
     <p>I'll walk through what 10x AI output looks like on a real codebase. Then we'll scope the audit for your team. No pitch deck — just a screen share and an honest conversation.</p>
-    <a href="javascript:void(0)" onclick="openContactModal()" class="btn-tech">CONN.ESTABLISH <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
+    <a href="#contact" onclick="openContactModal();return false;" class="btn-tech">CONN.ESTABLISH <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
   </div>
 </section>
+
+</main>
 
 <!-- Footer -->
 <footer>
