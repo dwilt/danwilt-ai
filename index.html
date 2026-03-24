@@ -2220,9 +2220,17 @@
     /* ── Mobile perf: heavy SVG elements live in <template> tags, not in DOM ── */
     /* tech-panel-group and section-vectors are only injected on desktop via JS */
 
-    /* ── Reduce blur/backdrop filters on mobile (expensive on GPU) ── */
-    .section-glow { filter: none !important; opacity: 0.7 !important; }
+    /* ── Mobile perf: kill ALL GPU-heavy layers to prevent zoom crash ── */
+    /* Particles: 48 elements × will-change:transform = 48 compositor layers */
+    .particle { display: none !important; }
+    /* Section glows: large blurred radial gradients */
+    .section-glow { display: none !important; }
+    .section-bg-effects > div[style*="blur"] { display: none !important; }
+    /* Dot patterns */
+    .section-dots { display: none !important; }
+    /* Remove ALL backdrop-filter on mobile */
     .gap-quote, .stat, .phase { backdrop-filter: none !important; }
+    nav { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(10,14,26,0.95) !important; }
 
     /* ── GPU compositing hints for smoother scroll/zoom ── */
     section { contain: layout style paint; }
@@ -2583,8 +2591,8 @@
           </div>
           <div class="step">
             <div class="step-cal"><div class="step-cal-header"><span>Day</span></div><div class="step-cal-body">2–3</div></div>
-            <h4>Hands-On Pairing</h4>
-            <p>I pair with your engineers on real tasks from your backlog. We work through actual tickets together so they experience the difference firsthand. This is where the "aha moment" happens — when they see their own code coming back right the first time.</p>
+            <h4>1-on-1 Developer Sessions</h4>
+            <p>I work directly with your engineers — whether that's pair programming on a real task, walking through the mental model shift, or breaking down how the AI tools actually work under the hood. Each session is tailored to where that developer is and what they need to progress. This is where the "aha moment" happens.</p>
           </div>
           <div class="step">
             <div class="step-cal"><div class="step-cal-header"><span>End</span></div><div class="step-cal-body">+30d</div></div>
