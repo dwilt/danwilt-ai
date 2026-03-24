@@ -1,20 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <radialGradient id="bg-glow" cx="0.3" cy="0.3" r="0.7">
-      <stop offset="0%" stop-color="#161b2e"/>
-      <stop offset="100%" stop-color="#0a0e1a"/>
-    </radialGradient>
-  </defs>
-  <!-- Chamfered background -->
-  <path d="M0,8 L8,0 L56,0 L64,8 L64,64 L8,64 L0,56 Z" fill="url(#bg-glow)"/>
-  <!-- Edge traces -->
-  <line x1="4" y1="3" x2="30" y2="3" stroke="rgba(91,127,199,0.4)" stroke-width="0.8"/>
-  <line x1="61" y1="10" x2="61" y2="30" stroke="rgba(91,127,199,0.25)" stroke-width="0.8"/>
-  <!-- Corner marks -->
-  <path d="M4,12 L4,4 L12,4" stroke="rgba(91,127,199,0.5)" stroke-width="1.2" fill="none"/>
+  <!-- Solid blue background -->
+  <rect width="64" height="64" fill="#5b7fc7"/>
   <!-- dw text -->
-  <text x="10" y="44" font-family="monospace" font-weight="600" font-size="28" fill="#5b7fc7" letter-spacing="-1">dw</text>
-  <!-- Dot accent -->
-  <circle cx="54" cy="48" r="2.5" fill="#5b7fc7" opacity="0.6"/>
-  <circle cx="54" cy="48" r="1.2" fill="#8aadee"/>
+  <text x="10" y="44" font-family="monospace" font-weight="600" font-size="28" fill="#ffffff" letter-spacing="-1">dw</text>
 </svg>
