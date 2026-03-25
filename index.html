@@ -1493,6 +1493,19 @@
     flex-shrink: 0;
   }
 
+  @media (max-width: 480px) {
+    .modal-example-row {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .modal-example-arrow svg {
+      transform: rotate(90deg);
+    }
+    .modal-example-num {
+      font-size: 1.2rem;
+    }
+  }
+
   .modal-guarantee {
     display: flex;
     align-items: center;
@@ -2922,11 +2935,6 @@
             <div class="modal-example-desc">return on your<br>total investment</div>
           </div>
         </div>
-      </div>
-
-      <div class="modal-guarantee">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        You only pay the growth bonus if your team's output doubles
       </div>
     </div>
   </div>
