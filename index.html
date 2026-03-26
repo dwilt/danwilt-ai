@@ -898,13 +898,17 @@
 
   /* ── Speed strip ── */
   .speed-strip {
-    background: rgba(14,18,32,0.8);
-    border-top: 1px solid rgba(91,127,199,0.08);
-    border-bottom: 1px solid rgba(91,127,199,0.08);
+    background: rgba(14,18,32,0.85);
+    border-top: 1px solid rgba(91,127,199,0.15);
+    border-bottom: 1px solid rgba(91,127,199,0.15);
     padding: 1.2rem 2rem;
     text-align: center;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     overflow: hidden;
+    z-index: 3;
   }
 
   .speed-strip::before {
@@ -914,7 +918,7 @@
     left: 15%;
     right: 15%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.25), transparent);
+    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.35), transparent);
   }
 
   .speed-strip::after {
@@ -924,7 +928,7 @@
     left: 20%;
     right: 20%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.15), transparent);
+    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.25), transparent);
   }
 
   .speed-strip p {
@@ -936,8 +940,8 @@
     color: #c0cce8;
   }
 
-  .speed-strip span { opacity: 0.6; }
-  .speed-strip .sep { margin: 0 1rem; opacity: 0.2; color: var(--accent); }
+  .speed-strip span { opacity: 0.85; }
+  .speed-strip .sep { margin: 0 1rem; opacity: 0.35; color: var(--accent); }
 
   /* ── Problem — Overheard Quotes ── */
   .gap-quotes {
@@ -1898,8 +1902,7 @@
   .cred-timeline {
     position: relative;
     padding-left: 0;
-    margin-left: 100px;
-    max-width: 700px;
+    margin-left: calc(200px + 2.5rem);
   }
 
   .cred-group-label {
@@ -1912,104 +1915,154 @@
     color: var(--accent);
     margin-bottom: 1rem;
     margin-top: 2.25rem;
-    padding-left: 140px;
+    padding-left: 0;
   }
 
   .cred-group-label:first-child { margin-top: 0; }
 
   /* chevron is now an inline span */
 
+  /* ── Shared card base for all cred items ── */
   .cred-item {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 0 20px;
-    padding: 0.75rem 0;
-    align-items: start;
+    padding: 1.5rem 1.75rem;
+    background: rgba(14,18,32,0.7);
+    border: 1px solid rgba(91,127,199,0.1);
+    border-radius: 0;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
+  .cred-item::before {
+    content: '';
+    position: absolute;
+    top: 3px; left: 14px; right: 14px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.25), transparent);
+    pointer-events: none;
+  }
+  .cred-item::after {
+    content: '';
+    position: absolute;
+    bottom: 3px; left: 20px; right: 20px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.12), transparent);
+    pointer-events: none;
+  }
+  .cred-item .cred-corner-tl,
+  .cred-item .cred-corner-br {
+    position: absolute;
+    width: 14px; height: 14px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .cred-corner-tl { top: 7px; left: 7px; border-top: 1.5px solid rgba(91,127,199,0.2); border-left: 1.5px solid rgba(91,127,199,0.2); }
+  .cred-corner-br { bottom: 7px; right: 7px; border-bottom: 1.5px solid rgba(91,127,199,0.2); border-right: 1.5px solid rgba(91,127,199,0.2); }
+  .cred-item:hover { border-color: rgba(91,127,199,0.2); box-shadow: 0 4px 30px rgba(0,0,0,0.3), 0 0 40px rgba(91,127,199,0.06), inset 0 1px 0 rgba(255,255,255,0.04); }
+  .cred-item:hover .cred-corner-tl,
+  .cred-item:hover .cred-corner-br { border-color: rgba(91,127,199,0.35); }
+  .cred-vectors { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+  .cred-vectors svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   .cred-item-logo {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    min-height: 1.5rem;
-    grid-row: 1;
-    grid-column: 1;
+    margin-bottom: 0.6rem;
   }
-
   .cred-item-logo img {
     height: 18px;
     width: auto;
-    filter: brightness(0) invert(1);
-    opacity: 0.3;
+    opacity: 0.85;
   }
-
   .cred-item h3 {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.05rem;
     font-weight: 700;
     margin-bottom: 0.2rem;
-    grid-column: 2;
     line-height: 1.5rem;
   }
-
   .cred-item p {
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     color: var(--text-dim);
     line-height: 1.55;
-    grid-column: 2;
   }
 
-  /* Inline mini stats under startup items */
-  .cred-mini-stats {
+  /* ── Enterprise: compact 3-column row ── */
+  .cred-enterprise-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  .cred-enterprise-row .cred-item {
+    text-align: center;
+    padding: 1.25rem;
+  }
+  .cred-enterprise-row .cred-item-logo {
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  .cred-enterprise-row .cred-item-logo img {
+    height: 24px;
+    opacity: 0.9;
+  }
+  .cred-enterprise-row .cred-item p { font-size: 0.78rem; }
+
+  /* ── Startups: 2-column featured cards ── */
+  .cred-featured-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .cred-featured-row .cred-item {
+    padding: 2rem;
+  }
+  .cred-featured-row .cred-item p {
+    margin-bottom: 1rem;
+  }
+
+  /* Big stat blocks at bottom of featured cards */
+  .cred-big-stats {
     display: flex;
-    align-items: baseline;
     gap: 0;
-    margin-top: 0.5rem;
-    grid-column: 2;
+    margin-top: auto;
   }
-
-  .cred-mini-stat {
-    display: flex;
-    align-items: baseline;
-    gap: 0.3rem;
-    padding-right: 0.85rem;
-    margin-right: 0.85rem;
+  .cred-big-stat {
+    flex: 1;
+    text-align: center;
+    padding: 0.75rem 0;
     border-right: 1px solid var(--border);
   }
-
-  .cred-mini-stat:last-child {
-    border-right: none;
-    padding-right: 0;
-    margin-right: 0;
-  }
-
-  .cred-mini-stat-num {
+  .cred-big-stat:last-child { border-right: none; }
+  .cred-big-stat-num {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.6rem;
     font-weight: 800;
-    color: var(--text);
+    color: #fff;
     line-height: 1;
   }
-
-  .cred-mini-stat-label {
-    font-size: 0.78rem;
+  .cred-big-stat-num.green { color: var(--green); }
+  .cred-big-stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
     color: var(--text-light);
-    font-weight: 500;
+    margin-top: 0.25rem;
+    letter-spacing: 0.5px;
   }
 
-  @media (max-width: 600px) {
-    .cred-timeline { padding-left: 0; margin-left: 0; }
-    .cred-timeline::before { display: none; }
-    .cred-item { grid-template-columns: 32px 1fr; gap: 0 12px; }
-    .cred-item-logo { justify-content: flex-start; min-height: auto; }
-    .cred-item-logo img { height: 14px; }
-    .cred-item h3, .cred-item p, .cred-mini-stats { grid-column: 2; }
+  @media (max-width: 700px) {
+    .cred-timeline { margin-left: 0; }
+    .cred-enterprise-row { grid-template-columns: 1fr; }
+    .cred-enterprise-row .cred-item { text-align: left; }
+    .cred-enterprise-row .cred-item-logo { justify-content: flex-start; }
+    .cred-featured-row { grid-template-columns: 1fr; }
     .cred-group-label { padding-left: 0; }
   }
 
   /* ── CTA ── */
   .cta-section {
-    background: #1a1a1a;
+    background: #0d1120;
     padding: 5rem 2rem;
     text-align: center;
     position: relative;
@@ -2049,6 +2102,27 @@
   }
 
   .cta-section h2 .setup { font-weight: 300; }
+
+  .cta-bg-photo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .cta-bg-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(0.5) brightness(0.35);
+    opacity: 0.4;
+  }
+  .cta-bg-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 20%, #0d1120 75%);
+  }
 
   .cta-section p {
     color: rgba(255,255,255,0.5);
@@ -2096,11 +2170,6 @@
   .footer-content a:hover { color: var(--accent); }
 
   /* ── Dark mode overrides ── */
-
-
-  .cta-section {
-    background: #0d1120;
-  }
 
   footer {
     border-top-color: rgba(255,255,255,0.04);
@@ -2201,33 +2270,28 @@
       padding: 2rem 1.75rem !important;
     }
 
-    /* 4. Cred-timeline: hide line, reset margin, stack logo above text */
+    /* 4. Cred-timeline: stack grids to single column on mobile */
     .cred-timeline {
       margin-left: 0 !important;
       padding-left: 0 !important;
     }
-    .cred-timeline::before {
-      display: none !important;
+    .cred-enterprise-row {
+      grid-template-columns: 1fr !important;
+    }
+    .cred-enterprise-row .cred-item {
+      text-align: left !important;
+    }
+    .cred-enterprise-row .cred-item-logo {
+      justify-content: flex-start !important;
+    }
+    .cred-featured-row {
+      grid-template-columns: 1fr !important;
     }
     .cred-group-label {
       padding-left: 0 !important;
     }
-    /* cred chevron is inline span now */
-    .cred-item {
-      grid-template-columns: 1fr !important;
-      gap: 0 !important;
-    }
-    .cred-item-logo {
-      justify-content: flex-start !important;
-      margin-bottom: 0.35rem;
-    }
     .cred-item-logo img {
       height: 16px !important;
-    }
-    .cred-item h3,
-    .cred-item p,
-    .cred-mini-stats {
-      grid-column: 1 !important;
     }
 
     /* ── Mobile perf: heavy SVG elements live in <template> tags, not in DOM ── */
@@ -2242,7 +2306,7 @@
     /* Dot patterns */
     .section-dots { display: none !important; }
     /* Remove ALL backdrop-filter on mobile */
-    .gap-quote, .stat, .phase { backdrop-filter: none !important; }
+    .gap-quote, .stat, .phase, .cred-item { backdrop-filter: none !important; }
     nav { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(10,14,26,0.95) !important; }
     /* Hero background decorative elements (circuit has infinite animations, grid/lines are heavy) */
     .hero-circuit { display: none !important; }
@@ -2252,7 +2316,7 @@
     .hero-lines-extra { display: none !important; }
     .hero-floor { display: none !important; }
     /* Stat card decorative SVG backgrounds */
-    .stat-vectors { display: none !important; }
+    .stat-vectors, .cred-vectors { display: none !important; }
     /* Pause infinite decorative animations (typing cursor blink, etc. still ok) */
     .hero-graph-chart { contain: layout style paint; }
 
@@ -2273,7 +2337,7 @@
       <a href="#gap" class="nav-link">The Gap</a>
       <a href="#process" class="nav-link">Process</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="#contact" onclick="openContactModal();return false;" class="nav-cta">BOOK.CALL <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
+      <a href="#contact" onclick="openContactModal();return false;" class="nav-cta">LET'S TALK<svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
     </div>
   </div>
 </div>
@@ -2365,7 +2429,7 @@
       <h1 class="hero-headline"><span class="setup">I replaced myself as CTO with AI.</span> Let me double your team's output.</h1>
       <p class="hero-sub">I audit how your team uses AI, find the gaps, and train them to close it. The result: doubled engineering output in 90 days.</p>
       <div class="hero-actions">
-        <a href="#contact" onclick="openContactModal();return false;" class="btn-tech">INIT.CONSULTATION <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
+        <a href="#contact" onclick="openContactModal();return false;" class="btn-tech">BOOK A CALL<svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
       </div>
     </div>
 
@@ -2449,13 +2513,13 @@
         <rect x="514" y="28" width="7" height="156" rx="1" fill="#48BB78"/>
 
         <!-- Hand-drawn annotation -->
-        <text x="390" y="-12" fill="rgba(255,255,255,0.85)" font-size="14" font-family="'Caveat', cursive" font-weight="600">Dan started implementing</text>
+        <text x="488" y="-18" fill="#fff" font-size="26" font-family="'Caveat', cursive" font-weight="600" text-anchor="end">Dan started implementing</text>
         <!-- Curved hand-drawn arrow from text down to first green bar -->
-        <path d="M 480,-4 C 484,12 492,45 496,85 C 497,92 497,96 497,100"
-              stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"
+        <path d="M 480,-4 C 484,16 492,50 496,85 C 497,92 497,96 497,100"
+              stroke="#fff" stroke-width="2.5" fill="none"
               stroke-linecap="round"/>
         <!-- Arrowhead -->
-        <polygon points="493,96 497,104 501,96" fill="rgba(255,255,255,0.6)"/>
+        <polygon points="490,93 497,108 504,93" fill="#fff"/>
 
         <!-- X-axis labels -->
         <text x="48" y="196" fill="rgba(255,255,255,0.3)" font-size="8.5" font-family="Inter, sans-serif" text-anchor="middle">Apr</text>
@@ -2474,12 +2538,11 @@
       <div class="hero-graph-source">Real data from Air Labs &middot; github.com/AirLabsTeam</div>
     </div>
   </div>
+  <!-- Speed strip — pinned to bottom of hero viewport -->
+  <div class="speed-strip">
+    <p><span>AUDIT :: 2–3 DAYS</span><span class="sep">·</span><span>TRAINING :: ~2 WEEKS</span><span class="sep">·</span><span>YOUR TEAM IS SHIPPING DIFFERENTLY WITHIN DAYS</span></p>
+  </div>
 </section>
-
-<!-- Speed strip -->
-<div class="speed-strip">
-  <p><span>AUDIT :: 2–3 DAYS</span><span class="sep">·</span><span>TRAINING :: ~2 WEEKS</span><span class="sep">·</span><span>YOUR TEAM IS SHIPPING DIFFERENTLY WITHIN DAYS</span></p>
-</div>
 
 <!-- The Problem -->
 <div class="section-divider"></div>
@@ -2764,7 +2827,7 @@
         <picture><source srcset="dan-headshot.webp" type="image/webp"><img src="dan-headshot.jpg" alt="Dan Wilt" width="200" height="200" loading="lazy"></picture>
       </div>
       <div class="about-text">
-        <h2 class="section-title" style="text-align:left;margin-bottom:1rem;"><span class="setup">I've been building software for 20+ years.</span> <br>I know what actually works in production.</h2>
+        <h2 class="section-title" style="text-align:left;margin-bottom:1rem;"><span class="setup" style="white-space:nowrap;">I've been building software for 20+ years.</span> <br>I know what actually works in production.</h2>
         <p class="section-subtitle" style="text-align:left;max-width:none;margin-bottom:0.5rem;">I'm not someone who read about AI last year and started consulting. I've shipped production code at the companies your engineers want to work at.</p>
       </div>
     </div>
@@ -2772,42 +2835,53 @@
     <div class="cred-timeline fade-up">
       <div class="cred-group-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> Enterprise</div>
 
-      <div class="cred-item">
-        <div class="cred-item-logo"><img src="logos/aws.svg" alt="Amazon" width="40" height="18" loading="lazy"></div>
-        <h3>Amazon — App Store</h3>
-        <p>Built the frontend for the Amazon App Store</p>
-      </div>
-      <div class="cred-item">
-        <div class="cred-item-logo"><img src="logos/walmart.svg" alt="Walmart" width="60" height="18" loading="lazy"></div>
-        <h3>Walmart — Sam's Club</h3>
-        <p>Established TDD patterns for the Sam's Club mobile team</p>
-      </div>
-      <div class="cred-item">
-        <div class="cred-item-logo"><img src="logos/expedia.svg" alt="Expedia" width="60" height="18" loading="lazy"></div>
-        <h3>Expedia — Product Page</h3>
-        <p>Improved performance of their product page</p>
+      <div class="cred-enterprise-row">
+        <div class="cred-item">
+          <div class="cred-vectors"><svg viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><polygon points="0,0 100,30 0,65" fill="rgba(91,127,199,0.015)"/><line x1="0" y1="0" x2="200" y2="80" stroke="rgba(91,127,199,0.03)" stroke-width="0.5"/></svg></div>
+          <div class="cred-corner-tl"></div><div class="cred-corner-br"></div>
+          <div class="cred-item-logo"><img src="logos/aws@3x.png" alt="Amazon" loading="lazy"></div>
+          <p>App Store frontend</p>
+        </div>
+        <div class="cred-item">
+          <div class="cred-vectors"><svg viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><polygon points="150,0 300,20 300,70 200,50" fill="rgba(91,127,199,0.015)"/><line x1="50" y1="0" x2="250" y2="80" stroke="rgba(91,127,199,0.025)" stroke-width="0.5"/></svg></div>
+          <div class="cred-corner-tl"></div><div class="cred-corner-br"></div>
+          <div class="cred-item-logo"><img src="logos/walmart@3x.png" alt="Walmart" loading="lazy"></div>
+          <p>Sam's Club TDD patterns</p>
+        </div>
+        <div class="cred-item">
+          <div class="cred-vectors"><svg viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><polygon points="0,20 150,0 160,60 10,80" fill="rgba(91,127,199,0.012)"/><line x1="80" y1="0" x2="280" y2="70" stroke="rgba(91,127,199,0.03)" stroke-width="0.5"/></svg></div>
+          <div class="cred-corner-tl"></div><div class="cred-corner-br"></div>
+          <div class="cred-item-logo"><img src="logos/expedia@3x.png" alt="Expedia" loading="lazy"></div>
+          <p>Product page performance</p>
+        </div>
       </div>
 
       <div class="cred-group-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> Startups</div>
 
-      <div class="cred-item">
-        <div class="cred-item-logo"><img src="logos/air.svg" alt="Air" width="30" height="18" loading="lazy"></div>
-        <h3>Air — Seed to Scale</h3>
-        <p>Joined at seed stage with 10 people, helped scale engineering to 35+ employees and $5M ARR over six years</p>
-        <div class="cred-mini-stats">
-          <div class="cred-mini-stat"><span class="cred-mini-stat-num">35+</span><span class="cred-mini-stat-label">employees</span></div>
-          <div class="cred-mini-stat"><span class="cred-mini-stat-num">6</span><span class="cred-mini-stat-label">years</span></div>
-          <div class="cred-mini-stat"><span class="cred-mini-stat-num">$5M</span><span class="cred-mini-stat-label">ARR</span></div>
+      <div class="cred-featured-row">
+        <div class="cred-item">
+          <div class="cred-vectors"><svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><polygon points="0,0 200,50 0,110" fill="rgba(91,127,199,0.015)"/><polygon points="250,0 400,0 400,80 320,55" fill="rgba(91,127,199,0.012)"/><line x1="0" y1="10" x2="300" y2="160" stroke="rgba(91,127,199,0.03)" stroke-width="0.5"/><line x1="100" y1="0" x2="380" y2="120" stroke="rgba(91,127,199,0.02)" stroke-width="0.4"/></svg></div>
+          <div class="cred-corner-tl"></div><div class="cred-corner-br"></div>
+          <div class="cred-item-logo"><img src="logos/air@3x.png" alt="Air" loading="lazy"></div>
+          <h3>Seed to Scale</h3>
+          <p>Joined at seed stage with 10 people, helped scale engineering to 35+ employees and $5M ARR over six years</p>
+          <div class="cred-big-stats">
+            <div class="cred-big-stat"><div class="cred-big-stat-num">35+</div><div class="cred-big-stat-label">employees</div></div>
+            <div class="cred-big-stat"><div class="cred-big-stat-num">6</div><div class="cred-big-stat-label">years</div></div>
+            <div class="cred-big-stat"><div class="cred-big-stat-num green">$5M</div><div class="cred-big-stat-label">ARR</div></div>
+          </div>
         </div>
-      </div>
-      <div class="cred-item">
-        <div class="cred-item-logo"><img src="logos/loancad.svg" alt="LoanCAD" width="60" height="18" loading="lazy"></div>
-        <h3>LoanCAD — Co-founder &amp; CTO</h3>
-        <p>Built the AI context system so effective I automated myself out of the CTO role. $1M+ profitable in under 2 years.</p>
-        <div class="cred-mini-stats">
-          <div class="cred-mini-stat"><span class="cred-mini-stat-num">5</span><span class="cred-mini-stat-label">employees</span></div>
-          <div class="cred-mini-stat"><span class="cred-mini-stat-num">2</span><span class="cred-mini-stat-label">years</span></div>
-          <div class="cred-mini-stat"><span class="cred-mini-stat-num">$1M+</span><span class="cred-mini-stat-label">profitable</span></div>
+        <div class="cred-item">
+          <div class="cred-vectors"><svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><polygon points="250,0 400,20 400,100 320,75" fill="rgba(91,127,199,0.015)"/><polygon points="0,30 150,0 170,80 20,110" fill="rgba(91,127,199,0.012)"/><line x1="80" y1="0" x2="350" y2="150" stroke="rgba(91,127,199,0.025)" stroke-width="0.5"/><line x1="0" y1="50" x2="250" y2="180" stroke="rgba(91,127,199,0.02)" stroke-width="0.4"/></svg></div>
+          <div class="cred-corner-tl"></div><div class="cred-corner-br"></div>
+          <div class="cred-item-logo"><img src="logos/loancad@3x.png" alt="LoanCAD" loading="lazy"></div>
+          <h3>Co-founder &amp; CTO</h3>
+          <p>Built the AI context system so effective I automated myself out of the CTO role. $1M+ profitable in under 2 years.</p>
+          <div class="cred-big-stats">
+            <div class="cred-big-stat"><div class="cred-big-stat-num">5</div><div class="cred-big-stat-label">employees</div></div>
+            <div class="cred-big-stat"><div class="cred-big-stat-num">2</div><div class="cred-big-stat-label">years</div></div>
+            <div class="cred-big-stat"><div class="cred-big-stat-num green">$1M+</div><div class="cred-big-stat-label">profitable</div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -2817,10 +2891,14 @@
 <!-- CTA -->
 <div class="section-divider"></div>
 <section class="cta-section" id="book">
+  <!-- Background photo — replace src with a working-at-computer photo -->
+  <div class="cta-bg-photo">
+    <img src="dan-working.jpg" alt="" loading="lazy">
+  </div>
   <div class="section-bg-effects">
     <div class="section-dots" style="opacity:0.08;"></div>
     <div class="section-glow" style="width:800px;height:800px;top:-300px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(91,127,199,0.2) 0%,rgba(91,127,199,0.08) 30%,transparent 55%);opacity:1;filter:blur(60px);animation:pulse-glow 6s ease-in-out infinite;--pulse-min:0.6;--pulse-max:1;"></div>
-    <div class="section-glow" style="width:400px;height:400px;bottom:-150px;left:20%;background:radial-gradient(circle,rgba(72,187,120,0.1) 0%,transparent 60%);opacity:1;filter:blur(60px);"></div>
+    <div class="section-glow" style="width:400px;height:400px;bottom:-150px;left:20%;background:radial-gradient(circle,rgba(91,127,199,0.08) 0%,transparent 60%);opacity:1;filter:blur(60px);"></div>
     <div class="section-glow" style="width:400px;height:400px;bottom:-150px;right:10%;background:radial-gradient(circle,rgba(91,127,199,0.08) 0%,transparent 60%);opacity:1;filter:blur(60px);"></div>
     <div class="vector-slot" data-vectors="4"></div>
     <!-- CTA section tech panels — Stack C style -->
@@ -2830,10 +2908,10 @@
 
   </div>
   <div class="cta-content fade-up" style="position:relative;z-index:1;">
-    <div class="cta-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> INIT.ENGAGE</div>
+    <div class="cta-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> READY TO START</div>
     <h2><span class="setup">Book a 30-minute call.</span><br>I'll show you the gap live.</h2>
     <p>I'll walk through what 10x AI output looks like on a real codebase. Then we'll scope the audit for your team. No pitch deck — just a screen share and an honest conversation.</p>
-    <a href="#contact" onclick="openContactModal();return false;" class="btn-tech">CONN.ESTABLISH <svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
+    <a href="#contact" onclick="openContactModal();return false;" class="btn-tech">GET IN TOUCH<svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
   </div>
 </section>
 

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cred Cards — Logo/Name Variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111627;
+    --border: #1e2540;
+    --border-light: #1a2035;
+    --text: #e8eaf0;
+    --text-dim: #8a90a8;
+    --text-light: #6b7194;
+    --accent: #5b7fc7;
+    --green: #48BB78;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); padding: 2rem; }
+
+  .variation-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+  }
+  .variation-desc { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 2rem; max-width: 750px; line-height: 1.6; }
+  .variation-block { max-width: 900px; margin: 0 auto 5rem; padding-bottom: 5rem; border-bottom: 1px solid var(--border); }
+  .variation-block:last-child { border-bottom: none; }
+
+  .chev { color: var(--accent); margin-right: 0.4rem; font-weight: 700; }
+  .group-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1rem; margin-top: 2rem;
+  }
+  .group-label:first-child { margin-top: 0; }
+
+  /* Card base */
+  .card {
+    background: rgba(14,18,32,0.7); border: 1px solid rgba(91,127,199,0.1);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    backdrop-filter: blur(20px); box-shadow: 0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03);
+    position: relative; overflow: hidden; transition: border-color 0.3s ease;
+  }
+  .card:hover { border-color: rgba(91,127,199,0.2); }
+  .card::before { content: ''; position: absolute; top: 3px; left: 14px; right: 14px; height: 1px; background: linear-gradient(90deg, transparent, rgba(91,127,199,0.25), transparent); pointer-events: none; }
+  .card::after { content: ''; position: absolute; bottom: 3px; left: 20px; right: 20px; height: 1px; background: linear-gradient(90deg, transparent, rgba(91,127,199,0.12), transparent); pointer-events: none; }
+
+  /* Logo placeholders */
+  .logo { height: 20px; width: auto; filter: brightness(0) invert(1); opacity: 0.35; }
+  .logo-box { display: flex; align-items: center; }
+  .logo-placeholder { width: 44px; height: 20px; background: rgba(255,255,255,0.1); border-radius: 3px; }
+  .logo-placeholder.wide { width: 64px; }
+
+  /* Enterprise grid */
+  .ent-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .ent-row .card { padding: 1.25rem; text-align: center; }
+  .ent-row .logo-box { justify-content: center; margin-bottom: 0.6rem; }
+  .ent-row h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.15rem; }
+  .ent-row p { font-size: 0.78rem; color: var(--text-dim); line-height: 1.5; }
+
+  /* Featured row */
+  .feat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .feat-row .card { padding: 2rem; }
+  .feat-row .logo-box { margin-bottom: 0.75rem; }
+  .feat-row h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .feat-row p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.55; margin-bottom: 1rem; }
+  .big-stats { display: flex; gap: 0; }
+  .big-stat { flex: 1; text-align: center; padding: 0.75rem 0; border-right: 1px solid var(--border); }
+  .big-stat:last-child { border-right: none; }
+  .big-stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.6rem; font-weight: 800; color: #fff; line-height: 1; }
+  .big-stat-num.green { color: var(--green); }
+  .big-stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-light); margin-top: 0.25rem; letter-spacing: 0.5px; }
+
+  /* Variation-specific: logo-only enterprise with bigger logos */
+  .logo-only .logo-placeholder { width: 56px; height: 24px; opacity: 0.4; }
+  .logo-only .logo-placeholder.wide { width: 76px; }
+
+  /* Variation C: enterprise as inline logo bar */
+  .logo-bar {
+    display: flex; align-items: center; gap: 2.5rem;
+    padding: 1.25rem 2rem; margin-bottom: 1.5rem;
+  }
+  .logo-bar .logo-placeholder { width: 56px; height: 22px; opacity: 0.25; }
+  .logo-bar .logo-placeholder.wide { width: 72px; }
+
+  /* Variation C: startup cards with role-only titles */
+  .role-title { color: var(--text-light); font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
+
+  @media (max-width: 700px) {
+    .ent-row, .feat-row { grid-template-columns: 1fr; }
+    .logo-bar { flex-wrap: wrap; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     VARIATION A — Logo only on enterprise, keep full titles on startups
+     ═══════════════════════════════════════ -->
+<div class="variation-block">
+  <div class="variation-label">Variation A — Logos only (enterprise), titles kept (startups)</div>
+  <div class="variation-desc">Enterprise cards drop the company name entirely — the logo IS the name. Just logo + what you did. Startups keep their descriptive titles since Air and LoanCAD aren't household names and the story framing ("Seed to Scale", "Co-founder & CTO") is doing real work.</div>
+
+  <div class="group-label"><span class="chev">&laquo;</span> Enterprise</div>
+  <div class="ent-row logo-only">
+    <div class="card">
+      <div class="logo-box"><div class="logo-placeholder"></div></div>
+      <p>App Store frontend</p>
+    </div>
+    <div class="card">
+      <div class="logo-box"><div class="logo-placeholder wide"></div></div>
+      <p>Sam's Club TDD patterns</p>
+    </div>
+    <div class="card">
+      <div class="logo-box"><div class="logo-placeholder wide"></div></div>
+      <p>Product page performance</p>
+    </div>
+  </div>
+
+  <div class="group-label"><span class="chev">&laquo;</span> Startups</div>
+  <div class="feat-row">
+    <div class="card">
+      <div class="logo-box"><div class="logo-placeholder"></div></div>
+      <h3>Seed to Scale</h3>
+      <p>Joined at seed stage with 10 people, helped scale engineering to 35+ employees and $5M ARR over six years</p>
+      <div class="big-stats">
+        <div class="big-stat"><div class="big-stat-num">35+</div><div class="big-stat-label">employees</div></div>
+        <div class="big-stat"><div class="big-stat-num">6</div><div class="big-stat-label">years</div></div>
+        <div class="big-stat"><div class="big-stat-num green">$5M</div><div class="big-stat-label">ARR</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="logo-box"><div class="logo-placeholder wide"></div></div>
+      <h3>Co-founder &amp; CTO</h3>
+      <p>Built the AI context system so effective I automated myself out of the CTO role. $1M+ profitable in under 2 years.</p>
+      <div class="big-stats">
+        <div class="big-stat"><div class="big-stat-num">5</div><div class="big-stat-label">employees</div></div>
+        <div class="big-stat"><div class="big-stat-num">2</div><div class="big-stat-label">years</div></div>
+        <div class="big-stat"><div class="big-stat-num green">$1M+</div><div class="big-stat-label">profitable</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     VARIATION B — Logos only everywhere, no text names at all
+     ═══════════════════════════════════════ -->
+<div class="variation-block">
+  <div class="variation-label">Variation B — Logos only everywhere</div>
+  <div class="variation-desc">No company names anywhere — just logos and what you did. The logo communicates the brand, the description communicates your contribution. Clean and confident. Startup cards use role/story as the title instead.</div>
+
+  <div class="group-label"><span class="chev">&laquo;</span> Enterprise</div>
+  <div class="ent-row logo-only">
+    <div class="card">
+      <div class="logo-box"><div class="logo-placeholder"></div></div>
+      <p>Built the App Store frontend</p>
+    </div>
+    <div class="card">
+      <div class="logo-box"><div class="logo-placeholder wide"></div></div>
+      <p>Established TDD patterns for mobile</p>
+    </div>
+    <div class="card">
+      <div class="logo-box"><div class="logo-placeholder wide"></div></div>
+      <p>Improved product page performance</p>
+    </div>
+  </div>
+
+  <div class="group-label"><span class="chev">&laquo;</span> Startups</div>
+  <div class="feat-row">
+    <div class="card">
+      <div class="logo-box"><div class="logo-placeholder"></div></div>
+      <h3>Seed to Scale — 6 Years</h3>
+      <p>Joined at seed stage with 10 people, helped scale engineering to 35+ employees and $5M ARR</p>
+      <div class="big-stats">
+        <div class="big-stat"><div class="big-stat-num">35+</div><div class="big-stat-label">employees</div></div>
+        <div class="big-stat"><div class="big-stat-num">6</div><div class="big-stat-label">years</div></div>
+        <div class="big-stat"><div class="big-stat-num green">$5M</div><div class="big-stat-label">ARR</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="logo-box"><div class="logo-placeholder wide"></div></div>
+      <h3>Co-founder &amp; CTO</h3>
+      <p>Built the AI context system so effective I automated myself out of the CTO role. $1M+ profitable in under 2 years.</p>
+      <div class="big-stats">
+        <div class="big-stat"><div class="big-stat-num">5</div><div class="big-stat-label">employees</div></div>
+        <div class="big-stat"><div class="big-stat-num">2</div><div class="big-stat-label">years</div></div>
+        <div class="big-stat"><div class="big-stat-num green">$1M+</div><div class="big-stat-label">profitable</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     VARIATION C — Enterprise as a logo bar, startups with role-label above logo
+     ═══════════════════════════════════════ -->
+<div class="variation-block">
+  <div class="variation-label">Variation C — Logo bar + role-first startups</div>
+  <div class="variation-desc">Enterprise logos shown as a simple horizontal bar — no cards, no descriptions. Maximum "I've worked at these places" signal with zero noise. Startup cards lead with a monospace role label above the logo, then the story and stats. The logo reinforces but doesn't headline.</div>
+
+  <div class="group-label"><span class="chev">&laquo;</span> Enterprise</div>
+  <div class="card logo-bar">
+    <div class="logo-placeholder"></div>
+    <div class="logo-placeholder wide"></div>
+    <div class="logo-placeholder wide"></div>
+  </div>
+
+  <div class="group-label"><span class="chev">&laquo;</span> Startups</div>
+  <div class="feat-row">
+    <div class="card">
+      <div class="role-title">Seed to Scale — 6 Years</div>
+      <div class="logo-box"><div class="logo-placeholder"></div></div>
+      <p>Joined at seed stage with 10 people, helped scale engineering to 35+ employees and $5M ARR</p>
+      <div class="big-stats">
+        <div class="big-stat"><div class="big-stat-num">35+</div><div class="big-stat-label">employees</div></div>
+        <div class="big-stat"><div class="big-stat-num">6</div><div class="big-stat-label">years</div></div>
+        <div class="big-stat"><div class="big-stat-num green">$5M</div><div class="big-stat-label">ARR</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="role-title">Co-founder &amp; CTO</div>
+      <div class="logo-box"><div class="logo-placeholder wide"></div></div>
+      <p>Built the AI context system so effective I automated myself out of the CTO role. $1M+ profitable in under 2 years.</p>
+      <div class="big-stats">
+        <div class="big-stat"><div class="big-stat-num">5</div><div class="big-stat-label">employees</div></div>
+        <div class="big-stat"><div class="big-stat-num">2</div><div class="big-stat-label">years</div></div>
+        <div class="big-stat"><div class="big-stat-num green">$1M+</div><div class="big-stat-label">profitable</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
