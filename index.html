@@ -259,9 +259,10 @@
     position: relative;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 8rem 2rem 6rem;
+    padding: 64px 0 0;
     overflow: hidden;
     background: var(--bg);
     transition: background 0.4s ease;
@@ -692,10 +693,13 @@
     z-index: 2;
     max-width: 1200px;
     width: 100%;
+    flex: 1;
     display: grid;
+    align-content: center;
     grid-template-columns: 1.1fr 1fr;
     gap: 3.5rem;
     align-items: center;
+    padding: 0 2rem;
   }
 
   @media (max-width: 900px) {
@@ -903,12 +907,29 @@
     border-bottom: 1px solid rgba(91,127,199,0.15);
     padding: 1.2rem 2rem;
     text-align: center;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
     overflow: hidden;
     z-index: 3;
+    margin-top: auto;
+  }
+
+  .hero-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid rgba(91,127,199,0.1);
+  }
+  .hero-logos img {
+    height: 16px;
+    width: auto;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+  }
+  .hero-logos img:hover {
+    opacity: 1;
   }
 
   .speed-strip::before {
@@ -2261,6 +2282,12 @@
     .speed-strip {
       padding: 1.5rem 1.5rem;
     }
+    .hero-logos {
+      gap: 1.5rem;
+    }
+    .hero-logos img {
+      height: 13px;
+    }
 
     /* 3. Stats: more breathing room when stacked */
     .stats {
@@ -2540,6 +2567,13 @@
   </div>
   <!-- Speed strip — pinned to bottom of hero viewport -->
   <div class="speed-strip">
+    <div class="hero-logos">
+      <img src="logos/aws@3x.png" alt="Amazon" loading="lazy">
+      <img src="logos/walmart@3x.png" alt="Walmart" loading="lazy">
+      <img src="logos/expedia@3x.png" alt="Expedia" loading="lazy">
+      <img src="logos/air@3x.png" alt="Air" loading="lazy">
+      <img src="logos/loancad@3x.png" alt="LoanCAD" loading="lazy">
+    </div>
     <p><span>AUDIT :: 2–3 DAYS</span><span class="sep">·</span><span>TRAINING :: ~2 WEEKS</span><span class="sep">·</span><span>YOUR TEAM IS SHIPPING DIFFERENTLY WITHIN DAYS</span></p>
   </div>
 </section>
