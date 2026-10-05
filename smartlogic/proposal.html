@@ -676,6 +676,33 @@
   }
   .print-brand { display: none; }
 </style>
+<script src="/analytics.js" defer></script>
+<script>
+  // Proposal tracking (PostHog via /analytics.js). Visit with ?me once to stop tracking your own views in that browser.
+  window.addEventListener('load', function () {
+    var ph = window.posthog;
+    if (!ph || !ph.capture) return;
+    try {
+      if (/[?&]me\b/.test(location.search)) { ph.opt_out_capturing(); return; }
+      ph.register({ proposal: 'smartlogic' });
+      ph.capture('proposal_viewed', { client: 'smartlogic' });
+      var seen = {};
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var id = e.target.id;
+          if (e.isIntersecting && !seen[id]) {
+            seen[id] = true;
+            ph.capture('proposal_section_viewed', { client: 'smartlogic', section: id });
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('section[id], footer').forEach(function (el) {
+        if (!el.id) el.id = 'end';
+        io.observe(el);
+      });
+    } catch (err) {}
+  });
+</script>
 </head>
 <body>
 
