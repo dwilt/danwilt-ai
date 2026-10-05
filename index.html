@@ -1044,6 +1044,109 @@
     font-weight: 700;
   }
 
+  /* ── Gap: proof / case studies ── */
+  .proof-head {
+    margin: 3.5rem 0 1.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(91,127,199,0.55);
+  }
+
+  .proof {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 760px) { .proof { grid-template-columns: 1fr; } }
+
+  .proof-card {
+    position: relative;
+    padding: 1.75rem 1.75rem 1.5rem;
+    background: rgba(14,18,32,0.7);
+    border: 1px solid rgba(91,127,199,0.12);
+    backdrop-filter: blur(20px);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  }
+
+  .proof-client {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+  }
+
+  .proof-role {
+    font-size: 0.72rem;
+    color: rgba(91,127,199,0.65);
+    margin: 0.3rem 0 1.4rem;
+    line-height: 1.5;
+  }
+
+  .proof-figs { display: grid; gap: 1.1rem; }
+
+  .proof-fig-n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 30px rgba(91,127,199,0.3), 0 0 60px rgba(91,127,199,0.12);
+  }
+
+  .proof-fig-l {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-top: 0.35rem;
+  }
+
+  .proof-before {
+    font-size: 0.84rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+  }
+
+  .proof-qual {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    text-shadow: 0 0 30px rgba(91,127,199,0.25);
+  }
+
+  .proof-src {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.34);
+    line-height: 1.55;
+    margin-top: 0.5rem;
+  }
+
+  .proof-note {
+    margin-top: 1.4rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid rgba(91,127,199,0.12);
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .proof-method {
+    margin: 1.5rem 0 0;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.38);
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
   /* ── Process / Phases ── */
   .phases {
     display: grid;
@@ -2360,7 +2463,7 @@
   <div class="nav-inner">
     <a href="/" class="nav-brand">dan<span class="accent">wilt</span><span class="dim">.ai</span></a>
     <div class="nav-links">
-      <a href="#gap" class="nav-link">The Gap</a>
+      <a href="#case-studies" class="nav-link">Case Studies</a>
       <a href="#process" class="nav-link">Process</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#contact" onclick="openContactModal();return false;" class="nav-cta">LET'S TALK<svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
@@ -2579,7 +2682,7 @@
 
 <!-- The Problem -->
 <div class="section-divider"></div>
-<section id="gap" style="position:relative;overflow:hidden;">
+<section id="case-studies" style="position:relative;overflow:hidden;">
   <div class="section-bg-effects">
     <div class="section-dots"></div>
     <div class="section-glow section-glow-1"></div>
@@ -2592,31 +2695,56 @@
   </div>
   <div class="container" style="position:relative;z-index:1;">
     <div class="fade-up">
-      <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> GAP.ANALYSIS</div>
-      <h2 class="section-title"><span class="setup">There's a massive gap between "uses AI tools"</span> and "AI is a force multiplier."</h2>
-      <p class="section-subtitle">If any of these sound familiar, your team is on the wrong side of that gap.</p>
+      <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> CASE.STUDIES</div>
+      <h2 class="section-title"><span class="setup">Two teams,</span> measured before and after.</h2>
+      <p class="section-subtitle">Both of these were measured from the git history with formatting sweeps excluded. LoanCAD's team doubled over that window so that figure is per developer.</p>
     </div>
 
-    <div class="gap-quotes fade-up">
-      <div class="gap-quote">
-        <p>I spent an hour getting Copilot to generate that module and then another hour fixing everything it got wrong.</p>
-        <div class="gap-quote-attr">— Every engineer, at some point</div>
+    
+
+    <div class="proof fade-up">
+
+      <div class="proof-card">
+        <div class="proof-client">Air</div>
+        <div class="proof-role">AI consultant, March 2026 to present &middot; 35-person company, $20M ARR</div>
+        <p class="proof-before">Engineers using AI unevenly, and review time climbing with every extra pull request.</p>
+        <div class="proof-figs">
+          <div>
+            <div class="proof-fig-n">5.4&times;</div>
+            <div class="proof-fig-l">the volume of code merged, with the same team and the same hours</div>
+            <div class="proof-src">Human lines changed in git, January&ndash;February compared to July&ndash;August, with two mechanical rename sweeps excluded.</div>
+          </div>
+          <div>
+            <div class="proof-qual">Review automation, built alongside it</div>
+            <div class="proof-fig-l">At five times the output, two humans reading every pull request stopped being affordable. So I built them a system that decides where human judgment is actually required and points the reviewer at those lines. One recent pull request: 31 files, over 2,000 lines changed, five spots a person had to look at. Plenty come back with nothing to flag and merge without a second reviewer.</div>
+            <div class="proof-src">This is separate from the training, it's something I built for them that runs on every pull request.</div>
+          </div>
+        </div>
+        <p class="proof-note">On-call issues went from 3.5 a week to 1.2 over the same stretch, with the same reviewers.</p>
       </div>
-      <div class="gap-quote">
-        <p>Half my day is reviewing AI-generated PRs from juniors that look right at first glance but break in weird ways.</p>
-        <div class="gap-quote-attr">— Senior engineer, buried in reviews</div>
+
+      <div class="proof-card">
+        <div class="proof-client">LoanCAD</div>
+        <div class="proof-role">CTO &amp; cofounder &middot; lending platform used by North American banks</div>
+        <p class="proof-before">Four people building a platform for banks, with no room in the budget to hire more.</p>
+        <div class="proof-figs">
+          <div>
+            <div class="proof-fig-n">3.0&times;</div>
+            <div class="proof-fig-l">the volume of code shipped per developer</div>
+            <div class="proof-src">Code lines changed per active contributor, January&ndash;February 2025 compared to the same window in 2026, with formatting sweeps excluded.</div>
+          </div>
+          <div>
+            <div class="proof-qual">Two business cofounders became developers</div>
+            <div class="proof-fig-l">They had only ever worked in the Python service and couldn't touch the application side. They now build full-stack features in the main codebase, with one engineer reviewing the work.</div>
+            <div class="proof-src">Not a measured number.</div>
+          </div>
+        </div>
+        <p class="proof-note">Test cases went from 90 to 3,132 while the codebase grew 1.8&times;.</p>
       </div>
-      <div class="gap-quote">
-        <p>It's great for throwaway scripts. But on our actual codebase? It doesn't know our patterns. The output is useless.</p>
-        <div class="gap-quote-attr">— Lead developer, legacy codebase</div>
-      </div>
-      <div class="gap-quote">
-        <p>We bought Copilot for everyone six months ago. Usage dropped after the first two weeks. Nobody talks about it anymore.</p>
-        <div class="gap-quote-attr">— VP of Engineering, wondering about ROI</div>
-      </div>
+
     </div>
 
-    <p class="gap-kicker fade-up">You've seen the LinkedIn posts — teams claiming 10x output, companies shipping with half the headcount. And your team's experience looks nothing like that. So you start to wonder if it's all hype. <strong>It's not.</strong> The gap between your results and theirs is specific, diagnosable, and fixable.</p>
+
 
   </div>
 </section>
@@ -2642,7 +2770,7 @@
     <div class="fade-up">
       <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> PROC.PIPELINE</div>
       <h2 class="section-title"><span class="setup">Two phases. Two weeks.</span> Permanently better output.</h2>
-      <p class="section-subtitle">I come in, diagnose exactly where your team stands, and train them to close the gap. No multi-month timelines. No bloated SOWs. And my compensation is tied to your results.</p>
+      <p class="section-subtitle">I come in, diagnose exactly where your team stands, and train them to close the gap. No multi-month timelines. No bloated SOWs.<!-- And my compensation is tied to your results. --></p>
     </div>
 
     <div class="phases fade-up">
@@ -2693,8 +2821,10 @@
         <div class="phase-pricing-block">
           <div class="phase-pricing-top">
             <span class="phase-price">$30,000</span>
+            <!-- growth bonus hidden for now
             <span class="phase-bonus-tag">+ 5% Growth Bonus</span>
             <a href="#bonus" class="bonus-info-icon" onclick="openGrowthModal();return false;">?</a>
+            -->
           </div>
           <div class="phase-meta-sub">~2–4 weeks &middot; Remote or on-site</div>
         </div>
@@ -3000,7 +3130,7 @@
   </div>
 </div>
 
-<!-- Growth Bonus Modal -->
+<!-- Growth Bonus Modal (hidden for now)
 <div class="modal-overlay" id="growth-modal" onclick="if(event.target===this)closeGrowthModal()">
   <div class="modal-content">
     <button class="modal-close" onclick="closeGrowthModal()"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14" style="position:relative;top:1px;"><path d="M2 2L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/><path d="M12 2L2 12" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></button>
@@ -3040,6 +3170,7 @@
     </div>
   </div>
 </div>
+-->
 
 <script>
 // ── Formspree config ──
