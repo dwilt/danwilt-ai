@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartLogic AI Engineering Enablement Proposal | Dan Wilt AI Consulting</title>
+<meta name="description" content="Proposal for SmartLogic's AI Engineering Enablement &amp; Adoption Coach RFP: two measured case studies, a two-phase approach, pricing and timeline.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111627;
+    --surface-2: #161b2e;
+    --border: #1e2540;
+    --border-light: #1a2035;
+    --text: #e8eaf0;
+    --text-dim: #8a90a8;
+    --text-light: #6b7194;
+    --accent: #5b7fc7;
+    --accent-ink: #5b7fc7;
+    --accent-soft: rgba(91,127,199,0.12);
+    --accent-border: rgba(91,127,199,0.25);
+    --green: #48BB78;
+    --card-bg: rgba(14,18,32,0.7);
+    --card-border: rgba(91,127,199,0.12);
+    --card-shadow: 0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03);
+    --rule: rgba(91,127,199,0.12);
+    --rule-soft: rgba(91,127,199,0.08);
+    --white: #fff;
+    --src: rgba(255,255,255,0.34);
+    --glow: 0 0 30px rgba(91,127,199,0.3), 0 0 60px rgba(91,127,199,0.12);
+    --glow-sm: 0 0 30px rgba(91,127,199,0.25);
+    --grid-line: rgba(91,127,199,0.08);
+    --quote-bar: rgba(91,127,199,0.45);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  strong { color: var(--text); font-weight: 600; }
+  em { font-style: italic; }
+
+  /* ── Navigation ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,14,26,0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(91,127,199,0.08);
+  }
+  .nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.2), transparent);
+    pointer-events: none;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .nav-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    color: #c0cce8;
+    text-decoration: none;
+  }
+  .nav-brand:hover { text-decoration: none; }
+  .nav-brand .accent { color: var(--accent); }
+  .nav-brand .dim { opacity: 0.35; color: var(--accent); }
+
+  .nav-pair { display: flex; align-items: center; gap: 0.9rem; }
+  .nav-x { color: var(--text-light); font-size: 0.85rem; opacity: 0.7; }
+  .nav-client { display: inline-flex; align-items: center; }
+  .sl-logo { height: 20px; width: auto; display: block; }
+  .nav-client:hover { text-decoration: none; }
+  @media (max-width: 480px) { .nav-x, .nav-client { display: none; } }
+  .nav-links { display: flex; align-items: center; gap: 2rem; }
+  .nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-link:hover { color: var(--accent); text-decoration: none; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+  .nav-link:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #edf2ff;
+    text-decoration: none;
+    padding: 8px 18px;
+    background: rgba(72,96,158,0.8);
+    border: 1px solid rgba(91,127,199,0.55);
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    transition: all 0.25s ease;
+  }
+  .nav-cta .chev-svg { color: #5b7fc7; transition: transform 0.25s, color 0.25s; }
+  .nav-cta:hover { background: rgba(60,80,135,0.75); color: #fff; text-decoration: none; }
+  .nav-cta:hover .chev-svg { transform: translateX(3px); color: #8aadee; }
+  @media (max-width: 760px) { .nav-link { display: none; } }
+
+  /* ── Shared ── */
+  section { padding: 5.5rem 2rem; position: relative; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  .narrow { max-width: 760px; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  .chev-svg { flex-shrink: 0; vertical-align: middle; }
+
+  .section-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+  .section-title .setup { font-weight: 300; }
+
+  .section-subtitle {
+    color: var(--text-dim);
+    font-size: 1rem;
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .section-alt {
+    background: var(--surface);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  h3.sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin: 2.75rem 0 0.9rem;
+    line-height: 1.2;
+  }
+  h3.sub:first-child { margin-top: 0; }
+
+  .prose p { font-size: 0.98rem; color: var(--text-dim); line-height: 1.75; margin-bottom: 1rem; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose p strong { color: var(--text); }
+
+  ul.list { list-style: none; margin: 0.75rem 0 1.25rem; }
+  ul.list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  ul.list li strong { color: var(--text); }
+  ul.list li::before {
+    content: '';
+    position: absolute;
+    left: 0.15rem;
+    top: 0.62em;
+    width: 8px; height: 8px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 14'%3E%3Cpath d='M0.5 1L5.5 7L0.5 13' stroke='%235b7fc7' stroke-width='2.2' fill='none' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M5.5 1L10.5 7L5.5 13' stroke='%235b7fc7' stroke-width='2.2' fill='none' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E") no-repeat center / contain;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 10rem 2rem 5rem;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 80% at 50% 0%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 0%, #000 20%, transparent 75%);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    top: -350px; left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(91,127,199,0.18), transparent 60%);
+    pointer-events: none;
+  }
+  .hero .container { position: relative; }
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.75rem;
+  }
+  .doc-meta .sep { color: rgba(91,127,199,0.35); }
+  .hero-headline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 1.75rem;
+    max-width: 820px;
+  }
+  .hero-headline .setup { font-weight: 300; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    max-width: 680px;
+    line-height: 1.75;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+
+  /* ── Case cards (matches danwilt.ai .proof-card) ── */
+  .proof {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 3.5rem;
+  }
+  @media (max-width: 760px) { .proof { grid-template-columns: 1fr; } }
+  .proof-card {
+    position: relative;
+    padding: 1.75rem 1.75rem 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  }
+  .proof-logo { height: 22px; color: var(--white); margin-bottom: 0.1rem; }
+  .proof-logo .logo-svg { height: 22px; width: auto; display: block; }
+  .proof-client {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.04em;
+  }
+  .proof-role {
+    font-size: 0.72rem;
+    color: rgba(91,127,199,0.65);
+    margin: 0.3rem 0 1.4rem;
+    line-height: 1.5;
+  }
+  .proof-before {
+    font-size: 0.84rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+  }
+  .proof-figs { display: grid; gap: 1.1rem; }
+  .proof-fig-n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-shadow: var(--glow);
+  }
+  .proof-fig-l {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-top: 0.35rem;
+  }
+  .proof-qual {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    text-shadow: var(--glow-sm);
+  }
+  .proof-src {
+    font-size: 0.7rem;
+    color: var(--src);
+    line-height: 1.55;
+    margin-top: 0.5rem;
+  }
+  .proof-note {
+    margin-top: 1.4rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  blockquote.rfp {
+    margin: 1.25rem 0;
+    padding: 0.25rem 0 0.25rem 1.1rem;
+    border-left: 2px solid var(--quote-bar);
+    color: var(--text);
+    font-style: italic;
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  /* ── Phase cards (matches danwilt.ai .phase) ── */
+  .phases { display: grid; grid-template-columns: 1fr; gap: 1.75rem; }
+  .phase {
+    background: var(--card-bg);
+    border: 1px solid rgba(91,127,199,0.1);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--card-shadow);
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+  .phase::before {
+    content: '';
+    position: absolute;
+    top: 4px; left: 16px; right: 16px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91,127,199,0.3), transparent);
+    pointer-events: none;
+  }
+  .phase-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5rem;
+    font-weight: 600;
+    color: rgba(91,127,199,0.07);
+    position: absolute;
+    top: 0.5rem; right: 1.5rem;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    pointer-events: none;
+  }
+  .phase-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+  }
+  .phase h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    line-height: 1.15;
+  }
+  .phase-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-light);
+    letter-spacing: 0.3px;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .phase ul.list { margin-bottom: 1.5rem; }
+  .phase-get {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule-soft);
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .phase-get .k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+
+  /* ── Steps inside a phase (matches danwilt.ai day markers) ── */
+  .steps { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.5rem; }
+  .step { display: grid; grid-template-columns: 56px 1fr; gap: 1rem; align-items: start; }
+  .step-day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.1;
+    padding-top: 0.15rem;
+  }
+  .step-day span {
+    display: block;
+    font-size: 0.56rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.2rem;
+  }
+  .step-body h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.01em;
+  }
+  .step-body p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+  .phase-meta .price { font-weight: 600; color: #c0cce8; }
+  .phase-get ul.list { margin: 0; }
+  .phase-get ul.list li { font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+  /* ── Callout ── */
+  .callout {
+    margin-top: 1.75rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+    border-left: 3px solid var(--accent);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  }
+  .callout p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.7; }
+  .callout p strong { color: var(--text); }
+
+  /* ── Fee table ── */
+  .fee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.75rem;
+    font-size: 0.92rem;
+  }
+  .fee-table th, .fee-table td {
+    padding: 1rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+  }
+  .fee-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    border-bottom: 1px solid var(--rule);
+  }
+  .fee-table td { color: var(--text-dim); }
+  .fee-table td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+  .fee-table td:first-child em { font-weight: 400; color: var(--text-light); font-style: normal; font-size: 0.8rem; }
+  .fee-table td.price {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: #c0cce8;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .fee-table tr.total td {
+    background: rgba(91,127,199,0.07);
+    color: var(--text);
+    border-bottom: none;
+    border-top: 1px solid var(--rule);
+  }
+  .fee-table tr.total td.price { color: var(--white); font-size: 1.02rem; text-shadow: var(--glow-sm); }
+  @media (max-width: 640px) {
+    .fee-table thead { display: none; }
+    .fee-table tr { display: block; padding: 0.75rem 0; border-bottom: 1px solid var(--rule-soft); }
+    .fee-table td { display: block; padding: 0.2rem 0; border: none; }
+    .fee-table td:first-child { white-space: normal; }
+  }
+
+  .guarantee {
+    padding: 1.5rem 1.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    margin: 0 0 1rem;
+  }
+  .guarantee .k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .guarantee p { font-size: 0.98rem; color: var(--text-dim); line-height: 1.7; }
+  .guarantee p strong { color: var(--text); }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.04);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+  .footer-content .sep { color: var(--border); font-weight: 300; margin: 0 0.25rem; }
+  .footer-content a { color: var(--text-dim); }
+  .footer-content a:hover { color: var(--accent); text-decoration: none; }
+  .footer-legal {
+    margin-top: 0.75rem;
+    font-size: 0.72rem;
+    color: var(--text-light);
+  }
+
+  /* ══════════ PRINT: flip to light, keep the system ══════════ */
+  @media print {
+    @page { size: letter; margin: 0.6in 0.7in; }
+    :root {
+      --bg: #ffffff;
+      --surface: #f6f8fc;
+      --border: #d9deea;
+      --border-light: #e3e7f0;
+      --text: #141a2e;
+      --text-dim: #4b5270;
+      --text-light: #6b7194;
+      --accent: #3a5ea8;
+      --accent-soft: rgba(58,94,168,0.07);
+      --accent-border: rgba(58,94,168,0.3);
+      --green: #2f8f5b;
+      --card-bg: #f6f8fc;
+      --card-border: rgba(58,94,168,0.22);
+      --card-shadow: none;
+      --rule: rgba(58,94,168,0.22);
+      --rule-soft: rgba(58,94,168,0.14);
+      --white: #0f1530;
+      --src: #7a809a;
+      --glow: none;
+      --glow-sm: none;
+      --quote-bar: #3a5ea8;
+    }
+    html, body { background: #fff !important; color: var(--text); }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 10.5pt; }
+    .nav, .hero-grid, .hero-glow { display: none !important; }
+    .nav-brand, .proof-fig-n, .proof-qual, .proof-client, .fee-table tr.total td.price { text-shadow: none; }
+    .proof-card, .phase, .guarantee, .callout { backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none; }
+    .phase::before { display: none; }
+    .phase-number { color: rgba(58,94,168,0.09); }
+    .nav-brand { color: var(--text); }
+    .fee-table td.price { color: var(--text); }
+    .section-alt { background: transparent; border: none; }
+
+    section { padding: 1.6rem 0; }
+    .hero { padding: 0 0 1.5rem; }
+    .print-brand {
+      display: flex !important;
+      align-items: center;
+      gap: 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+    }
+    .print-brand .accent { color: var(--accent); }
+    .print-brand .dim { opacity: 0.45; color: var(--accent); }
+    .print-brand .sl-logo { height: 18px; }
+    .hero-headline { font-size: 2.3rem; }
+    .hero-sub { font-size: 1rem; }
+    .section-subtitle { margin-bottom: 1.5rem; }
+    .section-title { font-size: 1.7rem; page-break-after: avoid; }
+    h3.sub { page-break-after: avoid; margin-top: 1.6rem; }
+
+    #results { break-before: page; page-break-before: always; }
+    .proof { grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.75rem; }
+    .proof-card { padding: 1.1rem 1.2rem 1rem; }
+    .proof-fig-n { font-size: 1.7rem; }
+    .phases { gap: 1rem; }
+    .phase { padding: 1.5rem 1.6rem; }
+    .phase ul.list li { font-size: 0.9rem; margin-bottom: 0.45rem; }
+    .step { break-inside: avoid; }
+    .phase-meta .price { color: var(--text); }
+    .proof-card, .guarantee, .callout, .fee-table, blockquote.rfp { page-break-inside: avoid; break-inside: avoid; }
+    .phase { break-inside: avoid; page-break-inside: avoid; }
+    #approach { break-before: page; page-break-before: always; }
+    ul.list li { page-break-inside: avoid; }
+    footer { padding: 1rem 0 0; border-top: 1px solid var(--border); break-inside: avoid; page-break-inside: avoid; }
+    #who { padding-top: 0.8rem; padding-bottom: 1rem; }
+    #investment { padding-bottom: 0.8rem; }
+    a { color: var(--accent); text-decoration: none; }
+  }
+  .print-brand { display: none; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-inner">
+    <div class="nav-pair">
+      <a href="/" class="nav-brand">dan<span class="accent">wilt</span><span class="dim">.ai</span></a>
+      <span class="nav-x" aria-hidden="true">&times;</span>
+      <a href="https://smartlogic.io" class="nav-client"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 354 62" class="sl-logo" role="img" aria-label="SmartLogic"> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 82.7037 15.861)" d="M7.7241 7.07819L5.2029 6.52868C4.00749 6.27007 3.42571 5.59147 3.42571 4.65425C3.42571 3.58751 4.45975 2.58574 6.01103 2.58574C8.46767 2.58574 9.11357 4.36293 9.2431 5.17105L11.9252 4.16929C11.6021 2.77981 10.2776 0 6.01103 0C2.97303 0 0.484534 2.26258 0.484534 4.91244C0.484534 7.11047 1.93899 8.75856 4.36293 9.27537L7.01322 9.85757C8.30588 10.148 9.01675 10.8916 9.01675 11.8611C9.01675 12.9601 8.07953 13.9296 6.36689 13.9296C4.16886 13.9296 2.94118 12.6365 2.74711 11.0207L0 11.9906C0.258616 13.7678 2.06851 16.5149 6.33419 16.5149C10.1803 16.5149 12.0225 13.8973 12.0225 11.6993C12.0225 9.40489 10.5362 7.69225 7.7241 7.07819"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 109.657 15.9264)" d="M17.484 0C15.5127 0 13.5088 0.710877 12.2807 2.94075C11.4407 0.937219 9.56626 0 7.62685 0C5.81738 0 3.87797 0.807699 2.90848 2.52077L2.90848 0.45226L0 0.45226L0 15.9977L3.0053 15.9977L3.0053 6.62508C3.0053 4.29838 4.45975 2.68214 6.62508 2.68214C8.9522 2.68214 9.9217 4.23341 9.9217 6.23737L9.9217 15.9977L12.9597 15.9977L12.9597 6.59281C12.9597 4.36293 14.4142 2.68214 16.5472 2.68214C18.8416 2.68214 19.8434 4.20114 19.8434 6.23737L19.8434 15.9977L22.8491 15.9977L22.8491 5.91421C22.8491 1.84174 20.1993 0 17.484 0"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 157.291 15.9901)" d="M12.1197 0.420411L15.1255 0.420411L15.1255 13.0892C15.1255 14.4791 15.2545 15.6745 15.2872 15.9658L12.3461 15.9658C12.2811 15.61 12.1843 14.8023 12.1843 13.8651L12.1843 13.6065C11.4411 15.0932 9.7926 16.3858 7.36908 16.3858C2.81166 16.3858 0 12.7015 0 8.07996C0 3.68433 2.97345 0 7.36908 0C10.1162 0 11.6025 1.35763 12.1197 2.61801L12.1197 0.420411ZM3.10297 8.07996C3.10297 11.2793 4.75107 13.7033 7.65955 13.7033C10.4394 13.7033 12.152 11.2793 12.152 8.07996C12.152 4.88059 10.4716 2.68256 7.69225 2.68256C4.91286 2.68256 3.10297 4.88059 3.10297 8.07996Z" fill-rule="evenodd"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 192.389 16.3136)" d="M2.97303 2.97345L2.97303 0.258616L0 0.258616L0 15.8041L3.038 15.8041L3.038 8.01499C3.038 4.58927 4.75064 3.23207 7.30368 3.23207C7.7241 3.23207 8.17636 3.26434 8.62904 3.32889L8.62904 0.0968219C8.46767 0.0649726 8.04726 0 7.62685 0C6.04373 0 4.10431 0.581781 2.97303 2.97345"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 212.425 7.006)" d="M6.01145 0L3.23164 0L3.23164 2.52077C3.23164 3.87797 2.52077 4.91244 0.840397 4.91244L0 4.91244L0 7.65955L2.97345 7.65955L2.97345 16.1918C2.97345 19.0034 4.65382 20.6192 7.30411 20.6192C8.33815 20.6192 9.114 20.4252 9.37262 20.3288L9.37262 17.743C9.114 17.8076 8.56449 17.8721 8.17678 17.8721C6.59281 17.8721 6.01145 17.1613 6.01145 15.7395L6.01145 7.65955L9.37262 7.65955L9.37262 4.91244L6.01145 4.91244L6.01145 0"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 235.37 1.12449)" d="M0 23.3986L3.038 23.3986L3.038 0L0 0L0 23.3986Z"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 245.324 15.861)" d="M0 8.24133C0 3.52296 3.29662 0 7.95044 0C12.6047 0 15.9013 3.52296 15.9013 8.24133C15.9013 12.9924 12.6047 16.5149 7.95044 16.5149C3.29662 16.5149 0 12.9924 0 8.24133ZM3.10255 8.24133C3.10255 11.8611 5.36512 13.8001 7.95044 13.8001C10.5362 13.8001 12.7983 11.8611 12.7983 8.24133C12.7983 4.65425 10.5362 2.71484 7.95044 2.71484C5.36512 2.71484 3.10255 4.65425 3.10255 8.24133Z" fill-rule="evenodd"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 278.739 16.2491)" d="M7.17501 0C9.56668 0 11.1825 0.904945 11.9579 2.45622L11.9579 0.29089L14.9641 0.29089L14.9641 14.6728C14.9641 18.6157 13.0247 22.4614 7.17501 22.4614C3.29662 22.4614 0.388137 20.0056 0 16.6763L2.94118 15.9977C3.16752 18.163 4.81562 19.8115 7.17501 19.8115C10.4389 19.8115 11.9261 18.1308 11.9261 14.7696L11.9261 12.5397C11.1825 13.9619 9.50214 15.0932 7.17501 15.0932C3.038 15.0932 0.0326986 11.9579 0.0326986 7.56273C0.0326986 3.36116 2.9089 0 7.17501 0ZM3.13525 7.56273C3.13525 10.6007 4.88016 12.5397 7.6277 12.5397C10.2453 12.5397 12.0552 10.568 12.0552 7.56273C12.0552 4.557 10.2453 2.58574 7.6277 2.58574C4.94514 2.58574 3.13525 4.557 3.13525 7.56273Z" fill-rule="evenodd"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 313.19 16.8309)" d="M0 15.5454L3.00573 15.5454L3.00573 0L0 0L0 15.5454Z"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 311.833 0.671808)" d="M2.16533 0C0.969493 0 0 0.969493 0 2.1976C0 3.39344 0.969493 4.36293 2.16533 4.36293C3.39344 4.36293 4.36293 3.39344 4.36293 2.1976C4.36293 0.969493 3.39344 0 2.16533 0"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 323.079 15.861)" d="M12.1843 10.5039C11.8288 11.732 10.7621 13.7033 7.85362 13.7033C5.33242 13.7033 3.10255 11.7966 3.10255 8.24133C3.10255 4.62155 5.36512 2.81166 7.82092 2.81166C10.4712 2.81166 11.6021 4.5897 11.9902 6.10827L14.7373 4.94514C14.0906 2.58574 11.9579 0 7.82092 0C3.39344 0 0 3.39386 0 8.24133C0 12.9601 3.32847 16.5149 7.85362 16.5149C11.8934 16.5149 14.1233 13.8973 14.8668 11.6675L12.1843 10.5039"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 0.503159 0.68285)" d="M27.2021 7.27438C27.4306 7.45231 27.6221 7.66889 27.7711 7.91859L30.903 13.1691C30.948 13.2442 30.9578 13.3351 30.9297 13.4183L26.5401 26.3801C26.405 26.7789 26.1587 27.1267 25.8275 27.3862L22.7016 29.836C22.6489 29.8776 22.584 29.9001 22.5169 29.9001L8.25303 29.9001C8.19613 29.8823 8.14262 29.8662 8.08572 29.8488L4.10838 27.1662L4.07695 27.0664L0.108953 14.384C-0.0252391 13.9542 -0.0358555 13.4969 0.0792267 13.062L1.21519 8.75856C1.25213 8.62012 1.33706 8.4991 1.45469 8.41799L13.1175 0.391534C13.4895 0.135466 13.9243 0.000424658 14.3757 0.000424658L17.66 0C17.793 0 17.9225 0.044589 18.0278 0.126548L27.2021 7.27438ZM1.9749 8.78659L13.4568 0.884986C13.7286 0.697712 14.0462 0.598767 14.3757 0.598767L16.3818 0.598767C16.5266 0.598767 16.5869 0.784342 16.4697 0.869274L4.40988 9.63038C4.35765 9.6686 4.33557 9.7357 4.35553 9.79727L5.24051 12.5465L5.24009 12.5469L8.71251 23.2339C8.80679 23.5243 8.59064 23.8216 8.28531 23.8216L6.65208 23.8216C6.58625 23.8216 6.5285 23.7791 6.50897 23.7167L1.91672 8.95433C1.89761 8.89148 1.92097 8.82353 1.9749 8.78659ZM17.6656 0.740178C17.7195 0.70111 17.793 0.702384 17.8456 0.743575L26.8343 7.74703C27.0042 7.8791 27.1465 8.04004 27.2569 8.22562L29.2464 11.5605C29.3305 11.701 29.1606 11.8547 29.0294 11.7579L17.8528 3.51149C17.8002 3.47285 17.7288 3.47285 17.6758 3.51107L6.25162 11.8119C6.00447 11.9915 5.65371 11.8772 5.56028 11.5864L5.05791 10.0266C5.03838 9.96501 5.06004 9.89792 5.11269 9.8597L17.6656 0.740178ZM30.2575 13.5372L25.8381 26.5865C25.8211 26.6103 25.8054 26.6324 25.7888 26.6562L23.4987 28.4512C23.3823 28.5425 23.218 28.427 23.2643 28.2864L27.8293 14.4099C27.8497 14.3483 27.8276 14.2804 27.775 14.2422L25.2644 12.4187L25.264 12.4187L16.3491 5.94181C16.1024 5.7626 16.1024 5.39485 16.3491 5.21522L17.6732 4.25294C17.7259 4.2143 17.7976 4.21473 17.8503 4.25337L30.2044 13.3686C30.2567 13.4073 30.2783 13.4752 30.2575 13.5372ZM24.6482 12.7117L15.428 6.01273C15.3758 5.97451 15.3045 5.97451 15.2522 6.01273L6.03165 12.7117C5.97942 12.7495 5.95734 12.817 5.97729 12.879L9.49898 23.7184C9.51936 23.78 9.57669 23.8216 9.64166 23.8216L21.0386 23.8216C21.1036 23.8216 21.1609 23.78 21.1809 23.7184L24.703 12.879C24.723 12.817 24.7009 12.7495 24.6482 12.7117ZM0.539131 13.7542L4.54705 26.564C4.56658 26.6264 4.62476 26.6689 4.69016 26.6689L20.1057 26.6689C20.1702 26.6689 20.2275 26.6273 20.2475 26.5657L20.7558 25.0085C20.8505 24.7185 20.6339 24.4204 20.329 24.4204L6.21128 24.4204C6.14546 24.4204 6.08771 24.3779 6.06817 24.315L1.71119 10.3081C1.6666 10.1646 1.46191 10.1693 1.42369 10.3145L0.537432 13.6714C0.537857 13.6995 0.538706 13.7262 0.539131 13.7542ZM22.3343 29.1986C22.3139 29.2598 22.2565 29.3014 22.192 29.3014L8.52779 29.3014C8.41356 29.2665 8.30697 29.2338 8.19316 29.199L5.73524 27.5416C5.61251 27.4588 5.67112 27.2677 5.8189 27.2677L20.5396 27.2677C20.6046 27.2677 20.662 27.2261 20.6819 27.1645L21.6446 24.214L21.3648 24.1227L21.3648 24.121L21.6497 24.2135L25.055 13.733C25.1489 13.443 25.4988 13.3292 25.7455 13.5084L27.07 14.4702C27.1227 14.5084 27.1448 14.5764 27.1244 14.6379L22.3343 29.1986Z" fill-rule="evenodd"/> </svg></a>
+    </div>
+    <div class="nav-links">
+      <a href="#results" class="nav-link">Results</a>
+      <a href="#approach" class="nav-link">Approach</a>
+      <a href="#investment" class="nav-link">Investment</a>
+      <a href="mailto:dan@danwilt.ai" class="nav-cta">EMAIL DAN<svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="10" height="10"><path d="M0.5 1L5.5 7L0.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M5.5 1L10.5 7L5.5 13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="print-brand"><span>dan<span class="accent">wilt</span><span class="dim">.ai</span></span><span class="nav-x" aria-hidden="true">&times;</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 354 62" class="sl-logo" role="img" aria-label="SmartLogic"> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 82.7037 15.861)" d="M7.7241 7.07819L5.2029 6.52868C4.00749 6.27007 3.42571 5.59147 3.42571 4.65425C3.42571 3.58751 4.45975 2.58574 6.01103 2.58574C8.46767 2.58574 9.11357 4.36293 9.2431 5.17105L11.9252 4.16929C11.6021 2.77981 10.2776 0 6.01103 0C2.97303 0 0.484534 2.26258 0.484534 4.91244C0.484534 7.11047 1.93899 8.75856 4.36293 9.27537L7.01322 9.85757C8.30588 10.148 9.01675 10.8916 9.01675 11.8611C9.01675 12.9601 8.07953 13.9296 6.36689 13.9296C4.16886 13.9296 2.94118 12.6365 2.74711 11.0207L0 11.9906C0.258616 13.7678 2.06851 16.5149 6.33419 16.5149C10.1803 16.5149 12.0225 13.8973 12.0225 11.6993C12.0225 9.40489 10.5362 7.69225 7.7241 7.07819"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 109.657 15.9264)" d="M17.484 0C15.5127 0 13.5088 0.710877 12.2807 2.94075C11.4407 0.937219 9.56626 0 7.62685 0C5.81738 0 3.87797 0.807699 2.90848 2.52077L2.90848 0.45226L0 0.45226L0 15.9977L3.0053 15.9977L3.0053 6.62508C3.0053 4.29838 4.45975 2.68214 6.62508 2.68214C8.9522 2.68214 9.9217 4.23341 9.9217 6.23737L9.9217 15.9977L12.9597 15.9977L12.9597 6.59281C12.9597 4.36293 14.4142 2.68214 16.5472 2.68214C18.8416 2.68214 19.8434 4.20114 19.8434 6.23737L19.8434 15.9977L22.8491 15.9977L22.8491 5.91421C22.8491 1.84174 20.1993 0 17.484 0"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 157.291 15.9901)" d="M12.1197 0.420411L15.1255 0.420411L15.1255 13.0892C15.1255 14.4791 15.2545 15.6745 15.2872 15.9658L12.3461 15.9658C12.2811 15.61 12.1843 14.8023 12.1843 13.8651L12.1843 13.6065C11.4411 15.0932 9.7926 16.3858 7.36908 16.3858C2.81166 16.3858 0 12.7015 0 8.07996C0 3.68433 2.97345 0 7.36908 0C10.1162 0 11.6025 1.35763 12.1197 2.61801L12.1197 0.420411ZM3.10297 8.07996C3.10297 11.2793 4.75107 13.7033 7.65955 13.7033C10.4394 13.7033 12.152 11.2793 12.152 8.07996C12.152 4.88059 10.4716 2.68256 7.69225 2.68256C4.91286 2.68256 3.10297 4.88059 3.10297 8.07996Z" fill-rule="evenodd"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 192.389 16.3136)" d="M2.97303 2.97345L2.97303 0.258616L0 0.258616L0 15.8041L3.038 15.8041L3.038 8.01499C3.038 4.58927 4.75064 3.23207 7.30368 3.23207C7.7241 3.23207 8.17636 3.26434 8.62904 3.32889L8.62904 0.0968219C8.46767 0.0649726 8.04726 0 7.62685 0C6.04373 0 4.10431 0.581781 2.97303 2.97345"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 212.425 7.006)" d="M6.01145 0L3.23164 0L3.23164 2.52077C3.23164 3.87797 2.52077 4.91244 0.840397 4.91244L0 4.91244L0 7.65955L2.97345 7.65955L2.97345 16.1918C2.97345 19.0034 4.65382 20.6192 7.30411 20.6192C8.33815 20.6192 9.114 20.4252 9.37262 20.3288L9.37262 17.743C9.114 17.8076 8.56449 17.8721 8.17678 17.8721C6.59281 17.8721 6.01145 17.1613 6.01145 15.7395L6.01145 7.65955L9.37262 7.65955L9.37262 4.91244L6.01145 4.91244L6.01145 0"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 235.37 1.12449)" d="M0 23.3986L3.038 23.3986L3.038 0L0 0L0 23.3986Z"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 245.324 15.861)" d="M0 8.24133C0 3.52296 3.29662 0 7.95044 0C12.6047 0 15.9013 3.52296 15.9013 8.24133C15.9013 12.9924 12.6047 16.5149 7.95044 16.5149C3.29662 16.5149 0 12.9924 0 8.24133ZM3.10255 8.24133C3.10255 11.8611 5.36512 13.8001 7.95044 13.8001C10.5362 13.8001 12.7983 11.8611 12.7983 8.24133C12.7983 4.65425 10.5362 2.71484 7.95044 2.71484C5.36512 2.71484 3.10255 4.65425 3.10255 8.24133Z" fill-rule="evenodd"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 278.739 16.2491)" d="M7.17501 0C9.56668 0 11.1825 0.904945 11.9579 2.45622L11.9579 0.29089L14.9641 0.29089L14.9641 14.6728C14.9641 18.6157 13.0247 22.4614 7.17501 22.4614C3.29662 22.4614 0.388137 20.0056 0 16.6763L2.94118 15.9977C3.16752 18.163 4.81562 19.8115 7.17501 19.8115C10.4389 19.8115 11.9261 18.1308 11.9261 14.7696L11.9261 12.5397C11.1825 13.9619 9.50214 15.0932 7.17501 15.0932C3.038 15.0932 0.0326986 11.9579 0.0326986 7.56273C0.0326986 3.36116 2.9089 0 7.17501 0ZM3.13525 7.56273C3.13525 10.6007 4.88016 12.5397 7.6277 12.5397C10.2453 12.5397 12.0552 10.568 12.0552 7.56273C12.0552 4.557 10.2453 2.58574 7.6277 2.58574C4.94514 2.58574 3.13525 4.557 3.13525 7.56273Z" fill-rule="evenodd"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 313.19 16.8309)" d="M0 15.5454L3.00573 15.5454L3.00573 0L0 0L0 15.5454Z"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 311.833 0.671808)" d="M2.16533 0C0.969493 0 0 0.969493 0 2.1976C0 3.39344 0.969493 4.36293 2.16533 4.36293C3.39344 4.36293 4.36293 3.39344 4.36293 2.1976C4.36293 0.969493 3.39344 0 2.16533 0"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 323.079 15.861)" d="M12.1843 10.5039C11.8288 11.732 10.7621 13.7033 7.85362 13.7033C5.33242 13.7033 3.10255 11.7966 3.10255 8.24133C3.10255 4.62155 5.36512 2.81166 7.82092 2.81166C10.4712 2.81166 11.6021 4.5897 11.9902 6.10827L14.7373 4.94514C14.0906 2.58574 11.9579 0 7.82092 0C3.39344 0 0 3.39386 0 8.24133C0 12.9601 3.32847 16.5149 7.85362 16.5149C11.8934 16.5149 14.1233 13.8973 14.8668 11.6675L12.1843 10.5039"/> <path fill="rgb(60,190,177)" stroke="none" transform="matrix(2 0 0 2 0.503159 0.68285)" d="M27.2021 7.27438C27.4306 7.45231 27.6221 7.66889 27.7711 7.91859L30.903 13.1691C30.948 13.2442 30.9578 13.3351 30.9297 13.4183L26.5401 26.3801C26.405 26.7789 26.1587 27.1267 25.8275 27.3862L22.7016 29.836C22.6489 29.8776 22.584 29.9001 22.5169 29.9001L8.25303 29.9001C8.19613 29.8823 8.14262 29.8662 8.08572 29.8488L4.10838 27.1662L4.07695 27.0664L0.108953 14.384C-0.0252391 13.9542 -0.0358555 13.4969 0.0792267 13.062L1.21519 8.75856C1.25213 8.62012 1.33706 8.4991 1.45469 8.41799L13.1175 0.391534C13.4895 0.135466 13.9243 0.000424658 14.3757 0.000424658L17.66 0C17.793 0 17.9225 0.044589 18.0278 0.126548L27.2021 7.27438ZM1.9749 8.78659L13.4568 0.884986C13.7286 0.697712 14.0462 0.598767 14.3757 0.598767L16.3818 0.598767C16.5266 0.598767 16.5869 0.784342 16.4697 0.869274L4.40988 9.63038C4.35765 9.6686 4.33557 9.7357 4.35553 9.79727L5.24051 12.5465L5.24009 12.5469L8.71251 23.2339C8.80679 23.5243 8.59064 23.8216 8.28531 23.8216L6.65208 23.8216C6.58625 23.8216 6.5285 23.7791 6.50897 23.7167L1.91672 8.95433C1.89761 8.89148 1.92097 8.82353 1.9749 8.78659ZM17.6656 0.740178C17.7195 0.70111 17.793 0.702384 17.8456 0.743575L26.8343 7.74703C27.0042 7.8791 27.1465 8.04004 27.2569 8.22562L29.2464 11.5605C29.3305 11.701 29.1606 11.8547 29.0294 11.7579L17.8528 3.51149C17.8002 3.47285 17.7288 3.47285 17.6758 3.51107L6.25162 11.8119C6.00447 11.9915 5.65371 11.8772 5.56028 11.5864L5.05791 10.0266C5.03838 9.96501 5.06004 9.89792 5.11269 9.8597L17.6656 0.740178ZM30.2575 13.5372L25.8381 26.5865C25.8211 26.6103 25.8054 26.6324 25.7888 26.6562L23.4987 28.4512C23.3823 28.5425 23.218 28.427 23.2643 28.2864L27.8293 14.4099C27.8497 14.3483 27.8276 14.2804 27.775 14.2422L25.2644 12.4187L25.264 12.4187L16.3491 5.94181C16.1024 5.7626 16.1024 5.39485 16.3491 5.21522L17.6732 4.25294C17.7259 4.2143 17.7976 4.21473 17.8503 4.25337L30.2044 13.3686C30.2567 13.4073 30.2783 13.4752 30.2575 13.5372ZM24.6482 12.7117L15.428 6.01273C15.3758 5.97451 15.3045 5.97451 15.2522 6.01273L6.03165 12.7117C5.97942 12.7495 5.95734 12.817 5.97729 12.879L9.49898 23.7184C9.51936 23.78 9.57669 23.8216 9.64166 23.8216L21.0386 23.8216C21.1036 23.8216 21.1609 23.78 21.1809 23.7184L24.703 12.879C24.723 12.817 24.7009 12.7495 24.6482 12.7117ZM0.539131 13.7542L4.54705 26.564C4.56658 26.6264 4.62476 26.6689 4.69016 26.6689L20.1057 26.6689C20.1702 26.6689 20.2275 26.6273 20.2475 26.5657L20.7558 25.0085C20.8505 24.7185 20.6339 24.4204 20.329 24.4204L6.21128 24.4204C6.14546 24.4204 6.08771 24.3779 6.06817 24.315L1.71119 10.3081C1.6666 10.1646 1.46191 10.1693 1.42369 10.3145L0.537432 13.6714C0.537857 13.6995 0.538706 13.7262 0.539131 13.7542ZM22.3343 29.1986C22.3139 29.2598 22.2565 29.3014 22.192 29.3014L8.52779 29.3014C8.41356 29.2665 8.30697 29.2338 8.19316 29.199L5.73524 27.5416C5.61251 27.4588 5.67112 27.2677 5.8189 27.2677L20.5396 27.2677C20.6046 27.2677 20.662 27.2261 20.6819 27.1645L21.6446 24.214L21.3648 24.1227L21.3648 24.121L21.6497 24.2135L25.055 13.733C25.1489 13.443 25.4988 13.3292 25.7455 13.5084L27.07 14.4702C27.1227 14.5084 27.1448 14.5764 27.1244 14.6379L22.3343 29.1986Z" fill-rule="evenodd"/> </svg></div>
+    <div class="doc-meta">
+      <span>For Bri Bellavati, SmartLogic</span><span class="sep">//</span>
+      <span>October 2026</span><span class="sep">//</span>
+      <span>Dan Wilt AI Consulting</span>
+    </div>
+    <h1 class="hero-headline"><span class="setup">SmartLogic.</span><br>AI Engineering Enablement Proposal</h1>
+    <p class="hero-sub">You're looking for someone to get eight engineers from using AI on their own, each in their own way, to a practice the whole team runs, without lowering the bar on architecture, testing, review or security. That's what I do, and I've done it twice with the numbers to show for it.</p>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="section-alt" id="results">
+  <div class="container">
+    <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> CASE.STUDIES</div>
+    <h2 class="section-title"><span class="setup">Two teams,</span> measured before and after.</h2>
+    <p class="section-subtitle">Both of these were measured from the git history with formatting sweeps excluded. LoanCAD's team doubled over that window so that figure is per developer. I was the CTO at LoanCAD so that one I did to my own team, and Air is a client.</p>
+
+    <div class="proof">
+      <div class="proof-card">
+        <div class="proof-logo"><svg class="logo-svg" role="img" aria-label="Air" xmlns="http://www.w3.org/2000/svg" viewBox="1.5 9.5 29 13" fill="none"> <path d="M18.4885 14.1291C19.0251 14.1291 19.4799 13.6866 19.4799 13.1396C19.4799 12.5927 19.0251 12.1501 18.4885 12.1501C17.9519 12.1501 17.4971 12.5927 17.4971 13.1396C17.4971 13.6866 17.9405 14.1291 18.4885 14.1291Z" fill="currentColor"/> <path d="M30.0794 18.7733C29.8232 18.5055 29.3684 18.5524 29.1001 18.843C28.3656 19.6577 27.6895 20.2629 26.7094 20.2629C26.2895 20.2629 26.1379 20.0072 26.1379 19.6229C26.1379 19.1456 26.2546 18.6917 26.4525 18.1568L27.1286 16.2829C27.3037 15.7942 27.0468 15.2934 26.5222 15.2934H24.3415C24.1686 15.2948 24.0056 15.2927 23.8512 15.287C23.8974 14.9439 23.9216 14.6065 23.9216 14.2812C23.9216 12.7682 23.1636 12.1516 22.2192 12.1516C21.3566 12.163 20.4114 12.8151 20.4114 14.142C20.4114 15.1606 20.9915 15.9931 22.2598 16.4072C21.642 18.3294 20.2911 20.2636 18.7908 20.2636C18.3361 20.2636 18.0677 19.9141 18.0677 19.4609C18.0677 19.0078 18.1724 18.6 18.3944 17.9714L19.0122 16.2488C19.1873 15.7715 18.9303 15.2948 18.4293 15.2948H14.9419C15.1568 14.2961 15.2515 13.416 15.2458 12.6183C15.2458 10.7913 14.4764 10 13.6601 10C12.3292 10 10.7612 11.3972 8.21258 15.6429C3.95011 16.2659 2 17.7007 2 19.6804C2 20.7744 2.72311 21.6005 3.93587 21.6005C6.09807 21.6005 7.31013 19.868 9.07874 16.9179C10.2595 16.7865 11.6068 16.7112 13.1035 16.6935C12.9533 17.1758 12.7783 17.6922 12.5768 18.2484L11.8075 20.3666C11.5278 21.1466 11.8423 21.6005 12.3555 21.6005C12.6701 21.6005 12.9384 21.3909 13.1021 20.9491L14.023 18.4004C14.2423 17.7959 14.4294 17.2269 14.5867 16.6899H17.3695L17.0543 17.5395C16.7745 18.3074 16.623 18.8898 16.623 19.495C16.623 20.8099 17.3809 21.6019 18.7916 21.6019C21.0128 21.6019 22.817 19.1889 23.5586 16.6573C23.8049 16.6786 24.0654 16.6906 24.3422 16.6906H25.508L25.1586 17.6567C24.9024 18.3663 24.6924 19.007 24.6924 19.6932C24.6924 20.6941 25.2518 21.6019 26.6283 21.6019C28.0047 21.6019 29.2289 20.7523 30.0801 19.7863C30.3249 19.5071 30.3484 19.0532 30.0801 18.7741L30.0794 18.7733ZM4.07537 20.2395C3.60919 20.2395 3.39924 19.9717 3.39924 19.6343C3.39924 18.4949 4.7878 17.6666 7.29091 17.1836C6.3066 18.7911 5.2554 20.2395 4.07537 20.2395ZM9.97053 15.4405C11.7918 12.5146 12.9355 11.3944 13.3925 11.3944C13.6722 11.3944 13.8473 11.5691 13.8473 12.6162C13.8537 13.3954 13.7441 14.2585 13.4935 15.2941C12.2046 15.3012 11.031 15.3502 9.97053 15.4405ZM21.7651 14.1413C21.7651 13.676 21.9637 13.4778 22.2199 13.4778C22.4412 13.4778 22.6163 13.7804 22.6163 14.3856C22.6163 14.6129 22.5978 14.8537 22.5637 15.103C22.0149 14.924 21.7651 14.6122 21.7651 14.1413Z" fill="currentColor"/> </svg></div>
+        <div class="proof-role">AI consultant, March 2026 to present &middot; 35-person company, $20M ARR</div>
+        <p class="proof-before">Engineers using AI unevenly, and review time climbing with every extra pull request.</p>
+        <div class="proof-figs">
+          <div>
+            <div class="proof-fig-n">5.4&times;</div>
+            <div class="proof-fig-l">the volume of code merged, with the same team and the same hours</div>
+            <div class="proof-src">Human lines changed in git, January&ndash;February compared to July&ndash;August, with two mechanical rename sweeps excluded.</div>
+          </div>
+          <div>
+            <div class="proof-qual">Review automation, built alongside it</div>
+            <div class="proof-fig-l">At five times the output, two humans reading every pull request stopped being affordable. So I built them a system that decides where human judgment is actually required and points the reviewer at those lines. One recent pull request: 31 files, over 2,000 lines changed, five spots a person had to look at. Plenty come back with nothing to flag and merge without a second reviewer.</div>
+            <div class="proof-src">This is separate from the training, it's something I built for them that runs on every pull request.</div>
+          </div>
+        </div>
+        <p class="proof-note">On-call issues went from 3.5 a week to 1.2 over the same stretch, with the same reviewers.</p>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-logo"><svg class="logo-svg" role="img" aria-label="LoanCAD" viewBox="0 0 84 14" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_2521_20242)"> <path d="M55.8439 11.976L54.9192 11.0512C54.3558 11.6269 53.7311 12.0464 53.0513 12.3097C52.3684 12.5731 51.6366 12.7017 50.8496 12.7017C50.0229 12.7017 49.2573 12.5608 48.55 12.2791C47.8426 11.9974 47.2241 11.5963 46.7005 11.0788C46.1768 10.5613 45.7665 9.95803 45.4726 9.26905C45.1786 8.58007 45.0285 7.82373 45.0285 6.99696C45.0285 6.17019 45.1755 5.41384 45.4726 4.72487C45.7665 4.03589 46.1768 3.43265 46.7005 2.91516C47.2241 2.39766 47.8396 1.99652 48.55 1.71481C49.2573 1.43309 50.0259 1.29223 50.8496 1.29223C51.6733 1.29223 52.3715 1.42084 53.0513 1.675C53.7341 1.92915 54.3558 2.3456 54.9192 2.92434L55.8439 1.99958C55.2407 1.33204 54.4997 0.829854 53.6209 0.496084C52.742 0.162313 51.805 -0.00610352 50.8098 -0.00610352C49.8146 -0.00610352 48.8164 0.168437 47.9376 0.514456C47.0587 0.860476 46.2963 1.35041 45.6471 1.97815C44.9979 2.60894 44.4927 3.34692 44.1313 4.20125C43.77 5.05251 43.5894 5.9834 43.5894 6.9939C43.5894 8.00439 43.77 8.93528 44.1313 9.78655C44.4927 10.6378 44.9918 11.3788 45.6348 12.0096C46.2779 12.6404 47.0373 13.1273 47.9161 13.4733C48.795 13.8194 49.7503 13.9939 50.7884 13.9939C51.8264 13.9939 52.742 13.8224 53.6209 13.4825C54.4997 13.1426 55.2407 12.6374 55.8439 11.9698V11.976Z" fill="currentColor"/> <path d="M61.9006 0.116333L55.6079 13.8805H57.1237L58.768 10.2029H66.4509L68.0952 13.8805H69.6293L63.3367 0.116333H61.9006ZM59.2978 9.02709L62.611 1.62289L65.9242 9.02709H59.2978Z" fill="currentColor"/> <path d="M82.3069 3.42036C81.6914 2.38536 80.8279 1.5739 79.7225 0.992099C78.614 0.410296 77.3248 0.116333 75.8581 0.116333H70.2544V13.8805H75.8581C77.3248 13.8805 78.614 13.5896 79.7225 13.0048C80.831 12.423 81.6914 11.6115 82.3069 10.5765C82.9224 9.54153 83.2316 8.3473 83.2316 6.99691C83.2316 5.64652 82.9224 4.45229 82.3069 3.4173V3.42036ZM81.0484 9.92123C80.5492 10.7664 79.8511 11.4278 78.9539 11.9085C78.0567 12.3862 76.9972 12.6251 75.7785 12.6251H71.7089V1.37793H75.7785C76.9972 1.37793 78.0567 1.61677 78.9539 2.09446C79.8511 2.57215 80.5492 3.23051 81.0484 4.06953C81.5475 4.90855 81.7955 5.88536 81.7955 6.99997C81.7955 8.11458 81.5475 9.07609 81.0484 9.92123Z" fill="currentColor"/> <path d="M1.45451 0.116333H0V13.8836H9.16492V12.6251H1.45451V0.116333Z" fill="currentColor"/> <path d="M26.3433 3.46021C25.5288 3.46021 24.7571 3.58269 24.0222 3.8246C23.2873 4.0665 22.6596 4.41252 22.1329 4.85653L22.7606 5.89765C23.1801 5.5302 23.6915 5.23623 24.2947 5.0127C24.898 4.78916 25.5349 4.67893 26.2024 4.67893C27.1731 4.67893 27.9019 4.91471 28.3949 5.38628C28.8879 5.85784 29.1329 6.53457 29.1329 7.41034V8.04113H25.8503C24.8674 8.04113 24.0834 8.17587 23.5016 8.44533C22.9168 8.7148 22.4973 9.06694 22.2431 9.50789C21.989 9.94883 21.8604 10.4357 21.8604 10.9716C21.8604 11.5626 22.0104 12.0831 22.3135 12.5363C22.6136 12.9895 23.0515 13.3417 23.6211 13.5989C24.1906 13.853 24.8643 13.9816 25.6359 13.9816C26.6189 13.9816 27.4365 13.7795 28.0856 13.3723C28.5603 13.0753 28.9277 12.7047 29.1972 12.2607V13.8837H30.5353V7.47158C30.5353 6.12118 30.1709 5.11375 29.4452 4.45233C28.7164 3.79091 27.6845 3.46021 26.3494 3.46021H26.3433ZM27.8866 12.3403C27.317 12.7017 26.6373 12.8823 25.8503 12.8823C25.0235 12.8823 24.3805 12.7047 23.9242 12.3526C23.4649 11.9974 23.2352 11.5258 23.2352 10.9379C23.2352 10.4143 23.4282 9.97333 23.814 9.62118C24.1998 9.26598 24.8918 9.09144 25.8901 9.09144H29.1359V10.7817C28.8726 11.4646 28.4562 11.9851 27.8866 12.3465V12.3403Z" fill="currentColor"/> <path d="M40.9897 5.4077C40.6284 4.75241 40.1323 4.26553 39.4954 3.94401C38.8585 3.62249 38.1205 3.46326 37.2846 3.46326C36.2894 3.46326 35.4289 3.6776 34.7093 4.10324C34.1275 4.4462 33.6774 4.89633 33.3528 5.44751V3.56431H32.0146V13.8898H33.411V8.46369C33.411 7.67673 33.558 7.00613 33.855 6.44882C34.1489 5.89152 34.5685 5.46588 35.1135 5.17192C35.6586 4.87795 36.2955 4.73097 37.0304 4.73097C38.0133 4.73097 38.7758 5.00963 39.3209 5.56693C39.8659 6.12424 40.1384 6.94795 40.1384 8.035V13.8959H41.5348V7.8972C41.5348 6.90201 41.3541 6.07524 40.9928 5.41995L40.9897 5.4077Z" fill="currentColor"/> <path d="M15.2646 2.93353L18.9239 12.4812C20.0385 11.4799 20.7397 10.0254 20.7397 8.4086C20.7397 5.38323 18.287 2.93353 15.2646 2.93353Z" fill="currentColor"/> <path d="M18.9207 12.4812L15.2645 9.34869L11.4062 12.2945C11.4062 12.2945 12.5392 13.7306 14.8909 13.8714C15.0134 13.8806 15.139 13.8868 15.2645 13.8868C15.2645 13.8868 15.2676 13.8868 15.2706 13.8868C16.6762 13.8868 17.9561 13.3539 18.9237 12.4843L18.9207 12.4812Z" fill="currentColor"/> <path d="M15.2646 2.93353C13.657 2.93353 12.2117 3.62557 11.2104 4.72793C11.094 4.85654 10.9807 4.99434 10.8766 5.13213C10.1938 6.04464 9.78955 7.18069 9.78955 8.4086C9.78955 8.64438 9.80486 8.8771 9.83548 9.10676C9.99471 10.3469 10.5643 11.4554 11.4063 12.2944L15.2646 2.93353Z" fill="currentColor"/> </g> <defs> <clipPath id="clip0_2521_20242"> <rect width="83.2314" height="14" fill="currentColor"/> </clipPath> </defs> </svg></div>
+        <div class="proof-role">CTO &amp; cofounder &middot; lending platform used by North American banks</div>
+        <p class="proof-before">Four people building a platform for banks, with no room in the budget to hire more.</p>
+        <div class="proof-figs">
+          <div>
+            <div class="proof-fig-n">3.0&times;</div>
+            <div class="proof-fig-l">the volume of code shipped per developer</div>
+            <div class="proof-src">Code lines changed per active contributor, January&ndash;February 2025 compared to the same window in 2026, with formatting sweeps excluded.</div>
+          </div>
+          <div>
+            <div class="proof-qual">Two business cofounders became developers</div>
+            <div class="proof-fig-l">They'd only ever worked in the Python service and couldn't touch the application side. They now build full-stack features in the main codebase, with one engineer reviewing the work.</div>
+            <div class="proof-src">Not a measured number.</div>
+          </div>
+        </div>
+        <p class="proof-note">Test cases went from 90 to 3,132 while the codebase grew 1.8&times;.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACKGROUND -->
+<section id="background">
+  <div class="container">
+    <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> BACKGROUND</div>
+    <h2 class="section-title"><span class="setup">Where I'm</span> coming from.</h2>
+    <div class="prose narrow" style="margin-top:1.5rem">
+      <p>I was employee #7 at <a href="https://air.inc">Air</a> and spent 6 years there as a Staff Engineer. I led the frontend team from seed stage (10 people, $450k ARR) through their Series B to 35+ people and $5M ARR, and was the ultimate decision maker on frontend patterns and hiring.</p>
+      <p>After Air I wanted to start my own thing, so I cofounded <a href="https://loancad.com">LoanCAD</a> with 3 others and was the CTO for 2 years. It's a lending platform used by North American banks. We raised an $875k friends and family round, got to $1.2M ARR, and were profitable in under 2 years with a team of four. I left at the end of February 2026 because the AI setup I built got us to where one developer could do the work of two of us, so my salary went to another hire instead. I kept my founder equity and went back to Air as a consultant.</p>
+      <p>Before all of that I ran 64 Interactive for 13 years doing contract and agency work for Amazon, Walmart, Expedia, EY and others, all of it on billable hours.</p>
+
+      <h3 class="sub">About your stack</h3>
+      <p>Your main stack is Elixir and Phoenix with some Rails. I don't write Elixir. My depth is TypeScript, React, Node and React Native, so I'll overlap with your mobile work and not your main one.</p>
+      <p>That doesn't matter much for this work. What I teach is how to think about the work: how a codebase gets set up so the AI produces code that matches your patterns, where you let it run and where you don't, what review turns into when volume goes up, and how you know any of it is working. None of that is language specific, so I'll work through the concepts with your Staff Engineers and they apply them in Elixir, which is how it has to go anyway since they own this after I leave.</p>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="section-alt" id="approach">
+  <div class="container">
+    <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> PROC.PIPELINE</div>
+    <h2 class="section-title"><span class="setup">Two phases. Two weeks.</span> Permanently better output.</h2>
+    <p class="section-subtitle">I come in, diagnose exactly where your team stands, and train them to close the gap. No multi-month timelines. No bloated SOWs.</p>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-number">01</div>
+        <div class="phase-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> PHASE.01</div>
+        <h3>The Audit</h3>
+        <div class="phase-meta"><span class="price">$10,000</span> &nbsp;&middot;&nbsp; 4 days &nbsp;&middot;&nbsp; Remote or on-site</div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-day"><span>Day</span>1</div>
+            <div class="step-body">
+              <h4>Codebase &amp; Tooling Review</h4>
+              <p>I dig into your repos, CI/CD pipeline, and existing AI setup. I'm looking at how your codebase is structured for AI to succeed - or fail - and what tools your team has access to versus what they're actually using.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-day"><span>Day</span>2&ndash;3</div>
+            <div class="step-body">
+              <h4>Engineer Shadowing</h4>
+              <p>I watch how your engineers actually work with AI in the codebase. Not interviews - real observation. I see where they're getting stuck, where they're fighting the tool, and where the process breaks down.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-day"><span>Day</span>4</div>
+            <div class="step-body">
+              <h4>Findings &amp; Recommendations</h4>
+              <p>A clear, prioritized report: here's where your team stands, here's the gap, here's exactly what it would take to close it. No jargon, no fluff - a document you can hand to your CTO or VP of Engineering.</p>
+            </div>
+          </div>
+        </div>
+        <div class="phase-get"><span class="k">Output.Files</span>
+          <ul class="list">
+            <li><strong>Audit Report</strong> - A prioritized findings document with specific, actionable recommendations tailored to your team, your stack, and your gaps.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-number">02</div>
+        <div class="phase-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> PHASE.02</div>
+        <h3>The Training</h3>
+        <div class="phase-meta"><span class="price">$30,000</span> &nbsp;&middot;&nbsp; ~2&ndash;4 weeks &nbsp;&middot;&nbsp; Remote or on-site</div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-day"><span>Half</span>&frac12;d</div>
+            <div class="step-body">
+              <h4>Team Workshop</h4>
+              <p>A live session covering the principles behind why AI falls short for most teams and the mental model shift required to make it a reliable tool. I tailor this to your stack, your codebase, and the specific gaps I found in the audit.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-day"><span>Days</span>1&ndash;3</div>
+            <div class="step-body">
+              <h4>1-on-1 Pairing Sessions</h4>
+              <p>I pair directly with your engineers to set up your codebase, working through real problems together. Each session is tailored to where that developer is - pair programming on a real task, walking through the mental model shift, or breaking down how AI tools actually work. Your team does the work with me, so they learn the discipline by applying it. The setup is the teaching tool, not the product - and this is where the "aha moment" happens.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-day"><span>End</span>+30d</div>
+            <div class="step-body">
+              <h4>Handoff &amp; Follow-Up</h4>
+              <p>Documentation of everything we set up, a playbook for maintaining and evolving it, and a 30-day check-in to answer questions and troubleshoot anything that's come up since.</p>
+            </div>
+          </div>
+        </div>
+        <div class="phase-get"><span class="k">Output.Files</span>
+          <ul class="list">
+            <li><strong>Starter Configuration</strong> - A reference implementation for how your codebase should be set up. Not a finished product - the scaffold your team extends. You know your codebase better than I ever will.</li>
+            <li><strong>Team Playbook</strong> - How your team owns this going forward: maintaining the setup, onboarding new engineers, and applying the discipline to new services as your codebase evolves.</li>
+            <li><strong>Workshop Recording</strong> - Yours to reuse for onboarding new hires and refreshing the team - no need to bring me back to re-teach it.</li>
+            <li><strong>Follow-Up Check-Ins</strong> - Bounded 30-day follow-up to pressure-test what's working. The goal is your team running on its own - not becoming a dependency.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section id="investment">
+  <div class="container">
+    <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> INVESTMENT</div>
+    <h2 class="section-title"><span class="setup">Fees</span> and timeline.</h2>
+    <p class="section-subtitle">These are fixed prices, not hourly. Timeframes are calendar time and assume SmartLogic is keeping up on its side.</p>
+
+    <table class="fee-table">
+      <thead>
+        <tr><th>Engagement</th><th>Scope</th><th>Fixed price</th><th>Timeframe</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Phase 1</td><td>The Audit: codebase &amp; tooling review, engineer shadowing, findings &amp; recommendations</td><td class="price">$10,000</td><td>4 days</td></tr>
+        <tr><td>Phase 2 <em>(optional)</em></td><td>The Training: team workshop, 1-on-1 pairing sessions, handoff &amp; follow-up</td><td class="price">$30,000</td><td>~2&ndash;4 weeks</td></tr>
+        <tr><td>Ongoing <em>(optional)</em></td><td>New client codebases brought into the practice, tooling and model changes absorbed, quarterly review of the numbers</td><td class="price">$4,500 / mo</td><td>Month-to-month, cancel anytime</td></tr>
+        <tr class="total"><td colspan="2">Phases 1 and 2</td><td class="price">$40,000</td><td>~3&ndash;5 weeks</td></tr>
+      </tbody>
+    </table>
+
+    <div class="prose narrow">
+
+      <h3 class="sub">Invoicing</h3>
+      <ul class="list">
+        <li><strong>Phase 1:</strong> billed on delivery of the assessment report, net 15.</li>
+        <li><strong>Phase 2:</strong> three equal monthly invoices, net 15, the first at kickoff.</li>
+        <li><strong>Ongoing:</strong> billed monthly in advance, cancel with 30 days' notice.</li>
+      </ul>
+      <p>Starting Phase 1 doesn't commit you to Phase 2. If the assessment finds the most valuable thing for you isn't coaching (sometimes it's the test suite), the roadmap will say that and you should do that first.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="section-alt" id="who">
+  <div class="container">
+    <div class="section-label"><svg class="chev-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14" width="8" height="8"><path d="M6.5 1L1.5 7L6.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><path d="M11.5 1L6.5 7L11.5 13" stroke="#5b7fc7" stroke-width="2.2" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg> WHO.DOES.THE.WORK</div>
+    <h2 class="section-title"><span class="setup">Just</span> me.</h2>
+    <div class="prose narrow" style="margin-top:1.5rem">
+      <p>There's no subcontractors or junior people behind me, the person doing the assessment is the person pairing with your engineers in week seven.</p>
+      <p>I'll sign your NDA before the assessment starts.</p>
+
+      <h3 class="sub">References</h3>
+      <ul class="list">
+        <li><strong>Air</strong> (<a href="https://air.inc">air.inc</a>). Current client, March 2026 to present. Their CTO and founder is happy to talk with you directly. Contact details on request.</li>
+        <li><strong>LoanCAD</strong> (<a href="https://loancad.com">loancad.com</a>). Cofounder and CTO, 2024 to February 2026. My cofounders are available as a reference too.</li>
+        <li><strong>Public stuff:</strong> <a href="https://danwilt.ai">danwilt.ai</a> (same two case studies), <a href="https://64i.dev">64i.dev</a> (the consulting history), and <a href="https://linkedin.com/in/danwilt">my LinkedIn</a>.</li>
+      </ul>
+      <p>Happy to walk through any of this on a call. The review system at Air is a lot easier to show than describe.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-content">
+    <span>Dan Wilt</span>
+    <span class="sep">|</span>
+    <a href="https://danwilt.ai">danwilt.ai</a>
+    <span class="sep">|</span>
+    <a href="mailto:dan@danwilt.ai">dan@danwilt.ai</a>
+    <span class="sep">|</span>
+    <span>484.472.3134</span>
+  </div>
+  <div class="footer-legal">&copy; 2026 64 Interactive, LLC, d/b/a Dan Wilt AI Consulting &middot; Hellertown, PA</div>
+</footer>
+
+</body>
+</html>
